@@ -44,5 +44,10 @@ public class Archer extends Character
         }
     }
     
-    public void updateRating() { rating = 0.9 * attack + 0.1 * defense; }
+    @Override
+    public void updateRating()
+    {
+        super.updateRating();
+        rating = 0.9 * attack + 0.1 * defense;
+    }
 }

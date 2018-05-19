@@ -44,5 +44,10 @@ public class Assassin extends Character
         }
     }
     
-    public void updateRating() { rating = 0.7 * attack + 0.3 * defense; }
+    @Override
+    public void updateRating() 
+    { 
+        super.updateRating();
+        rating = 0.7 * attack + 0.3 * defense; 
+    }
 }

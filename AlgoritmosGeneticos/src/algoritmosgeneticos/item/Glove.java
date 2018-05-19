@@ -9,15 +9,11 @@ package algoritmosgeneticos;
  *
  * @author v1nkey
  */
-public class AlgoritmosGeneticos {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) 
+public class Glove extends Item
+{    
+    public Glove(int id, double strength, double agility, double skill, double resistance, double life) 
     {
-        // TODO code application logic here
-        
+        super(id, strength, agility, skill, resistance, life);
     }
     
 }

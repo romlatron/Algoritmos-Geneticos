@@ -9,34 +9,34 @@ package algoritmosgeneticos;
  *
  * @author v1nkey
  */
-public class Defender extends Character
+public class Warrior extends Character 
 {
-    public Defender(int typeOfDefender)
+    public Warrior(int typeOfWarrior)
     {
-        switch(typeOfDefender)
+        switch(typeOfWarrior)
         {
             case 1:
-                strengthRatio = 1;
+                strengthRatio = 1.1;
                 agilityRatio = 0.9;
-                skillRatio = 0.7;
-                resistanceRatio = 1.2;
-                lifeRatio = 1.1;
+                skillRatio = 0.8;
+                resistanceRatio = 1;
+                lifeRatio = 0.9;
                 break;
                 
             case 2:
-                strengthRatio = 1.1;
-                agilityRatio = 0.8;
+                strengthRatio = 1.2;
+                agilityRatio = 1;
                 skillRatio = 0.8;
-                resistanceRatio = 1.1;
-                lifeRatio = 1.1;
+                resistanceRatio = 0.8;
+                lifeRatio = 0.8;
                 break;
                 
             case 3:
-                strengthRatio = 0.9;
+                strengthRatio = 0.8;
                 agilityRatio = 0.9;
                 skillRatio = 0.9;
-                resistanceRatio = 1;
-                lifeRatio = 1.3;
+                resistanceRatio = 1.2;
+                lifeRatio = 1.1;
                 break;
                 
             default:
@@ -44,5 +44,10 @@ public class Defender extends Character
         }
     }
     
-    public void updateRating() { rating = 0.1 * attack + 0.9 * defense; }
+    @Override
+    public void updateRating() 
+    { 
+        super.updateRating();
+        rating = 0.6 * attack + 0.4 * defense; 
+    }
 }
