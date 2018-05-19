@@ -16,6 +16,7 @@ import java.util.List;
 public class Chromosome {
     public List <Item> items;
     public double height;
+
     Character character;
     
     double getFitness () {
