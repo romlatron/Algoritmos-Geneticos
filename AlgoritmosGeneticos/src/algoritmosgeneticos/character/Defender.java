@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmosgeneticos;
+package algoritmosgeneticos.character;
 
 /**
  *
@@ -42,12 +42,9 @@ public class Defender extends Character
             default:
                 break;
         }
+        
+        attackRatio = 0.1;
+        defenseRatio = 0.9;       
     }
     
-    @Override
-    public void updateRating() 
-    {
-        super.updateRating();
-        rating = 0.1 * attack + 0.9 * defense; 
-    }
 }

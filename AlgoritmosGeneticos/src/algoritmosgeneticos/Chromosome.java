@@ -5,6 +5,8 @@
  */
 package algoritmosgeneticos;
 
+import algoritmosgeneticos.character.Character;
+import algoritmosgeneticos.item.Item;
 import java.util.List;
 
 /**
@@ -12,11 +14,17 @@ import java.util.List;
  * @author Acer
  */
 public class Chromosome {
-    List <Object> items;
-    double height;
+    public List <Item> items;
+    public double height;
     Character character;
     
     double getFitness () {
         return character.calcularFitness(this);
+    }
+    
+    public Chromosome (Character character, List <Item> items) {
+        this.character = character;
+        this.items = items;
+        height = Math.random()*0.7 + 1.3;
     }
 }
