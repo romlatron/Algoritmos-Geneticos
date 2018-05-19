@@ -44,5 +44,10 @@ public class Warrior extends Character
         }
     }
     
-    public void updateRating() { rating = 0.6 * attack + 0.4 * defense; }
+    @Override
+    public void updateRating() 
+    { 
+        super.updateRating();
+        rating = 0.6 * attack + 0.4 * defense; 
+    }
 }

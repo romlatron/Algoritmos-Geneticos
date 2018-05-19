@@ -44,5 +44,10 @@ public class Defender extends Character
         }
     }
     
-    public void updateRating() { rating = 0.1 * attack + 0.9 * defense; }
+    @Override
+    public void updateRating() 
+    {
+        super.updateRating();
+        rating = 0.1 * attack + 0.9 * defense; 
+    }
 }
