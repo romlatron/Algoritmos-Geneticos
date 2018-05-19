@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmosgeneticos;
+package algoritmosgeneticos.item;
 
 /**
  *
@@ -12,11 +12,11 @@ package algoritmosgeneticos;
 public class Item 
 {
     protected int id;
-    protected double strength;
-    protected double agility;
-    protected double skill;
-    protected double resistance;
-    protected double life;
+    public double strength;
+    public double agility;
+    public double skill;
+    public double resistance;
+    public double life;
 
     public Item(int id, double strength, double agility, double skill, double resistance, double life) 
     {

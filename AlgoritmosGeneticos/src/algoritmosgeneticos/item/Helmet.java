@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmosgeneticos;
+package algoritmosgeneticos.item;
 
 /**
  *
  * @author v1nkey
  */
-public class Armor extends Item
+public class Helmet extends Item
 {    
-    public Armor(int id, double strength, double agility, double skill, double resistance, double life) 
+    public Helmet(int id, double strength, double agility, double skill, double resistance, double life) 
     {
         super(id, strength, agility, skill, resistance, life);
     }

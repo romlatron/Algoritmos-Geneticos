@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmosgeneticos;
+package algoritmosgeneticos.character;
+
+import algoritmosgeneticos.Chromosome;
 
 /**
  *
@@ -42,12 +44,9 @@ public class Assassin extends Character
             default:
                 break;
         }
+        
+        attackRatio = 0.7;
+        defenseRatio = 0.3;       
     }
     
-    @Override
-    public void updateRating() 
-    { 
-        super.updateRating();
-        rating = 0.7 * attack + 0.3 * defense; 
-    }
 }
