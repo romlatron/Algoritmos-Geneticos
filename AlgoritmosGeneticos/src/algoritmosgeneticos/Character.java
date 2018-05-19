@@ -5,6 +5,9 @@
  */
 package algoritmosgeneticos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author v1nkey
@@ -32,7 +35,7 @@ public class Character
     
     protected double rating;
     
-    //protected List<Item> items;
+    protected List<Item> items = new ArrayList<>();
 
     public Character() {}
     

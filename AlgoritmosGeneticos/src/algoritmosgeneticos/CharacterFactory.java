@@ -9,7 +9,7 @@ package algoritmosgeneticos;
  *
  * @author v1nkey
  */
-public class CharacterFactory <T extends Character> 
+public class CharacterFactory
 {
     public CharacterFactory() {}
     
