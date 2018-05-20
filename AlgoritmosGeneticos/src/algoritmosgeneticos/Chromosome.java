@@ -17,15 +17,15 @@ public class Chromosome {
     public List <Item> items;
     public double height;
 
-    Character character;
+    public Character character;
     
     double getFitness () {
         return character.calcularFitness(this);
     }
     
-    public Chromosome (Character character, List <Item> items) {
+    public Chromosome (Character character, List <Item> items, double height) {
         this.character = character;
         this.items = items;
-        height = Math.random()*0.7 + 1.3;
+        this.height = height;
     }
 }
