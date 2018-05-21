@@ -13,14 +13,23 @@ import java.util.List;
  *
  * @author Acer
  */
-public class Chromosome {
+public class Chromosome implements Comparable<Chromosome> {
     public List <Item> items;
     public double height;
 
     public Character character;
     
-    double getFitness () {
+    public double getFitness () {
         return character.calcularFitness(this);
+    }
+
+    public int compareTo(Chromosome c) {
+        // Greater comes first
+        double diff = this.getFitness() - c.getFitness();
+
+        if (diff == 0) return 0;
+        else if (diff > 0) return -1;
+        else return +1;
     }
     
     public Chromosome (Character character, List <Item> items, double height) {

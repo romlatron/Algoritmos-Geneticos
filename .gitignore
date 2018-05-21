@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /AlgoGeneticos/nbproject/private/
-=======
-/AlgoritmosGeneticos/nbproject/private/
->>>>>>> e7d3a70e8551f9bc9c983d0429ad74da1bfc5ff2
-=======
 /AlgoritmosGeneticos/nbproject/private/
 /AlgoritmosGeneticos/build/
->>>>>>> bcbd8550227977153819b2e5a3d83f5783533a84
+.vscode
+.DS_Store
