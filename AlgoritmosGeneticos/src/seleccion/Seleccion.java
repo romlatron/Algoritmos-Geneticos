@@ -13,7 +13,7 @@ import java.util.List;
  * @author Acer
  */
 public interface Seleccion {
-    public List <Chromosome> apply (List <Chromosome> chromosomes);
+    public List<Chromosome> apply (List <Chromosome> chromosomes);
     public void next();
     public void setTake(int n);
 }
