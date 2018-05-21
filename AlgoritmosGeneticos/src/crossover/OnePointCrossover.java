@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Acer
  */
-public class OnePointCrossover implements Crossover {
+public class OnePointCrossover extends CrossoverAbstract {
 
     @Override
     public List <Chromosome> apply(Chromosome c1, Chromosome c2) {
