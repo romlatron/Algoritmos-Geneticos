@@ -25,7 +25,7 @@ public class AlgoritmosGeneticos {
         // Logic should look like this. Uncomment when its functional.
 
         // Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
-        // Seleccion seleccionar = new SeleccionElite(10); // 10 is param
+        // Seleccion seleccionar = new SeleccionElite((int) (N * gap)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         // chromosomes = new ArrayList();
 
         // Boolean rmt = true;
