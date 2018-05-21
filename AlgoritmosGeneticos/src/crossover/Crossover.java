@@ -13,5 +13,6 @@ import java.util.List;
  * @author Acer
  */
 public interface Crossover {
-    public List <Chromosome> apply (Chromosome c1, Chromosome c2);
+    public List <Chromosome> apply (List <Chromosome> chromosomes);
+    
 }
