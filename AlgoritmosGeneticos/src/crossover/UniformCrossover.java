@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Acer
  */
-public class UniformCrossover implements Crossover {
+public class UniformCrossover  extends CrossoverAbstract {
 
     double prob;
     
