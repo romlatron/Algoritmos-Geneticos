@@ -14,10 +14,6 @@ import java.util.List;
  * @author Acer
  */
 public class ReemplazoMutarTodos implements Reemplazo<Chromosome> {
-    
-    @Override
-    public int TAKE() { return 2; }
-
     public ReemplazoMutarTodos () {}
     
     @Override

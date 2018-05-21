@@ -5,6 +5,8 @@
  */
 package algoritmosgeneticos.item;
 
+import sun.font.TrueTypeGlyphMapper;
+
 /**
  *
  * @author v1nkey
@@ -26,5 +28,11 @@ public class Item
         this.skill = skill;
         this.resistance = resistance;
         this.life = life;
+    }
+
+    @Override
+    public boolean equals (Object o) {
+        Item i = (Item) o;
+        return i.id == this.id;
     }
 }

@@ -13,6 +13,5 @@ import java.util.List;
  * @author Acer
  */
 public interface Reemplazo {
-    public int TAKE();
     public List <Chromosome> apply (List <Chromosome> chromosomes);
 }

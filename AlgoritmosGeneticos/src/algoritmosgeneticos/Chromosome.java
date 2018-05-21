@@ -31,6 +31,19 @@ public class Chromosome implements Comparable<Chromosome> {
         else if (diff > 0) return -1;
         else return +1;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        Chromosome c = (Chromosome) o;
+
+        if (c.height != this.height) return false;
+
+        for (Item i: c.items) if (!this.items.contains(i)) return false;
+        for (Item i: this.items) if (!c.items.contains(i)) return false;
+
+        return true;
+    }
     
     public Chromosome (Character character, List <Item> items, double height) {
         this.character = character;

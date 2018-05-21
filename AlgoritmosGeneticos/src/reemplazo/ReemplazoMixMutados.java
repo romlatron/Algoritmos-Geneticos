@@ -15,15 +15,10 @@ import java.util.List;
  *
  * @author Acer
  */
-public class ReemplazoKMutados implements Reemplazo<Chromosome> {
-    private int take;
+public class ReemplazoMixMutados implements Reemplazo<Chromosome> {
     private Seleccion seleccion;
 
-    @Override
-    public int TAKE() { return take; }
-
-    public ReemplazoKMutados (int take, Seleccion seleccion) {
-        this.take = take;
+    public ReemplazoMixMutados (Seleccion seleccion) {
         this.seleccion = seleccion;
     }
     
