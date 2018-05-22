@@ -5,6 +5,11 @@
  */
 package algoritmosgeneticos;
 
+import reemplazo.ReemplazoKMutados;
+import reemplazo.ReemplazoMutarTodos;
+import seleccion.Seleccion;
+import seleccion.SeleccionElite;
+
 /**
  *
  * @author v1nkey
@@ -16,8 +21,34 @@ public class AlgoritmosGeneticos {
      */
     public static void main(String[] args) 
     {
-        // TODO code application logic here
-        
+
+        // Logic should look like this. Uncomment when its functional.
+
+        // Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
+        // Seleccion seleccionar = new SeleccionElite((int) (N * gap)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
+        // chromosomes = new ArrayList();
+
+        // Boolean rmt = true;
+        // int x = 20;
+        // // Iterate to stop condition
+        // while (x-- >= 0) {
+
+        //     // If the replacement strategy is mutate all
+        //     // Do some extra logic.
+        //     if (rmt) {
+        //         seleccionar.setTake(2);
+        //         List<Chromosome> aux = new ArrayList<>();
+        //         List<Chromosome> chroms = chromosomes.clone();
+        //         do {
+        //             aux = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes)), chroms));
+        //             chroms.remove(aux.get(0));
+        //             chroms.remove(aux.get(1));
+        //         } while (aux.size() < chromosomes.size());
+        //         chromosomes = aux;
+        //     } else {
+        //         chromosomes = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes)), chromosomes));
+        //     }
+		// }
     }
     
 }
