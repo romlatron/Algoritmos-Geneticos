@@ -51,4 +51,5 @@ public class Chromosome implements Comparable<Chromosome> {
         this.items = items;
         this.height = height;
     }
+    
 }
