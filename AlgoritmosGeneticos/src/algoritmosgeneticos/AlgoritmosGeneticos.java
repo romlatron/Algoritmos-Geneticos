@@ -8,16 +8,13 @@ package algoritmosgeneticos;
 import Files.FileReader;
 import algoritmosgeneticos.character.Defender;
 import algoritmosgeneticos.item.Item;
-import crossover.Crossover;
-import crossover.OnePointCrossover;
 import java.util.ArrayList;
 import java.util.List;
-import mutation.Mutation;
-import mutation.UniformMutation;
-import reemplazo.Reemplazo;
-import reemplazo.ReemplazoKMutados;
-import seleccion.Seleccion;
-import seleccion.SeleccionElite;
+import mutation.*;
+import crossover.*;
+import reemplazo.*;
+import seleccion.*;;
+import stop_condition.*;
 
 /**
  *
@@ -59,12 +56,12 @@ public class AlgoritmosGeneticos {
         Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
         Seleccion seleccionar = new SeleccionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         Mutation mutar = new UniformMutation(0.2);
-        Crossover recombinar = new OnePointCrossover();
+        Crossover recombinar = new OnePointCrossover(0.8);
+        StopCondition condicionCorte = new MaximumGenCondition(20);
 
         // Iterate to stop condition
         Boolean rmt = false;
-        int x = 20;
-        while (x-- >= 0) {
+        while (!condicionCorte.stop(chromosomes)) {
 
             // If the replacement strategy is mutate all, do some extra logic
             if (rmt) {

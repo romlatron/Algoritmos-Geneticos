@@ -16,15 +16,25 @@ import java.util.List;
  */
 public abstract class CrossoverAbstract implements Crossover {
 
+    protected double prob;
     
-    public abstract List<Chromosome> apply(Chromosome c1, Chromosome c2);
+    public CrossoverAbstract(double prob) {
+        this.prob = prob;
+    }
+    
+    protected abstract List<Chromosome> apply(Chromosome c1, Chromosome c2);
     
     @Override
     public List <Chromosome> apply(List <Chromosome> chromosomes) {
         Collections.shuffle(chromosomes);
         List <Chromosome> newSons = new ArrayList<>();
         for (int i=0; i<chromosomes.size(); i+=2) {
-            newSons.addAll(apply(chromosomes.get(i), chromosomes.get(i+1)));
+            if (Math.random() < prob)
+                newSons.addAll(apply(chromosomes.get(i), chromosomes.get(i+1)));
+            else {
+                newSons.add(chromosomes.get(i));
+                newSons.add(chromosomes.get(i+1));
+            }
         }
         return newSons;
     }

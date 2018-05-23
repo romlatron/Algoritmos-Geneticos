@@ -16,16 +16,15 @@ public class MaximumGenCondition implements StopCondition{
 
     int i, maxNumber;
     
-    public MaximumGenCondition(int i, int n) {
-        this.i = i;
+    public MaximumGenCondition(int n) {
+        this.i = 0;
         this.maxNumber = n;
     }
     
     @Override
     public boolean stop(List<Chromosome> generation) {
         i++;
-        if (i == maxNumber) return true;
-        return false;
+        return i == maxNumber;
     }
     
 }
