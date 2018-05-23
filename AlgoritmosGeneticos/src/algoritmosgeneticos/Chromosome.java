@@ -23,6 +23,7 @@ public class Chromosome implements Comparable<Chromosome> {
         return character.calcularFitness(this);
     }
 
+    @Override
     public int compareTo(Chromosome c) {
         // Greater comes first
         double diff = this.getFitness() - c.getFitness();
@@ -31,7 +32,7 @@ public class Chromosome implements Comparable<Chromosome> {
         else if (diff > 0) return -1;
         else return +1;
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;

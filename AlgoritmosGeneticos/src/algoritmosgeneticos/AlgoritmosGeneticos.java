@@ -31,7 +31,7 @@ public class AlgoritmosGeneticos {
         // Logic should look like this. Uncomment when its functional.
 
         Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
-        Seleccion seleccionar = new SeleccionElite((int) (20)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
+        Seleccion seleccionar = new SeleccionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         Mutation mutar = new UniformMutation(0.2);
         Crossover recombinar = new OnePointCrossover();
         List<Chromosome> chromosomes = new ArrayList();
