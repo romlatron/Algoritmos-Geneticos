@@ -23,12 +23,15 @@ import java.util.Scanner;
  * @author rama
  */
 public class FileReader {
-    private List<Item> readItems(String filename, String itemType) {
-        File file = new File("./testdata/" + filename + ".tsv");
+    public FileReader() {}
+    
+    public List<Item> readItems(String filename, String itemType) {
+        File file = new File("./testdata/" + filename);
         List<Item> items = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file).useLocale(Locale.US);
             sc.nextLine();
+
             while(sc.hasNextInt()){
                 switch(itemType){
                 case "BOOTS":
@@ -43,7 +46,7 @@ public class FileReader {
                 case "GLOVES":
                     items.add(new Glove(sc.nextInt(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),sc.nextDouble()));
                     break;
-                case "CHEST":
+                case "ARMOR":
                     items.add(new Armor(sc.nextInt(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),sc.nextDouble()));
                     break;
                 }
