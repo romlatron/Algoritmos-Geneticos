@@ -5,6 +5,20 @@
  */
 package algoritmosgeneticos;
 
+import Files.FileReader;
+import algoritmosgeneticos.character.Defender;
+import algoritmosgeneticos.item.Item;
+import crossover.Crossover;
+import crossover.OnePointCrossover;
+import java.util.ArrayList;
+import java.util.List;
+import mutation.Mutation;
+import mutation.UniformMutation;
+import reemplazo.Reemplazo;
+import reemplazo.ReemplazoKMutados;
+import seleccion.Seleccion;
+import seleccion.SeleccionElite;
+
 /**
  *
  * @author v1nkey
@@ -16,8 +30,60 @@ public class AlgoritmosGeneticos {
      */
     public static void main(String[] args) 
     {
-        // TODO code application logic here
+
+        // Read items from files
+        FileReader fileReader = new FileReader();
+        List<Item> boots = fileReader.readItems("boots.tsv", "BOOTS");
+        List<Item> gloves = fileReader.readItems("gloves.tsv", "GLOVES");
+        List<Item> armor = fileReader.readItems("armor.tsv", "ARMOR");
+        List<Item> weapon = fileReader.readItems("weapon.tsv", "WEAPON");
+        List<Item> helmet = fileReader.readItems("helmet.tsv", "HELMET");
+
+        // Create chromosomes
+        List<Chromosome> chromosomes = new ArrayList<>();
         
+        for (int i = 0; i < 20; i++) {
+            List<Item> items = new ArrayList<>();
+            
+            items.add(boots.get((int) (Math.random() * boots.size())));
+            items.add(gloves.get((int) (Math.random() * gloves.size())));
+            items.add(armor.get((int) (Math.random() * armor.size())));
+            items.add(weapon.get((int) (Math.random() * weapon.size())));
+            items.add(helmet.get((int) (Math.random() * helmet.size())));
+
+            Chromosome chromosome = new Chromosome(new Defender(2), items, Math.random() * 0.2 + 1);
+            chromosomes.add(chromosome);
+        }
+        
+        // Define methods
+        Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
+        Seleccion seleccionar = new SeleccionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
+        Mutation mutar = new UniformMutation(0.2);
+        Crossover recombinar = new OnePointCrossover();
+
+        // Iterate to stop condition
+        Boolean rmt = false;
+        int x = 20;
+        while (x-- >= 0) {
+
+            // If the replacement strategy is mutate all, do some extra logic
+            if (rmt) {
+                seleccionar.setTake(2);
+                List<Chromosome> aux = new ArrayList<>();
+                List<Chromosome> chroms = new ArrayList<>(chromosomes);
+                
+                do {
+                    List<Chromosome> temp = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes))), chroms);
+
+                    chroms.remove(temp.get(0));
+                    chroms.remove(temp.get(1));
+                    aux.addAll(temp);
+                } while (aux.size() < chromosomes.size());
+                chromosomes = aux;
+            } else {
+                chromosomes = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
+            }
+        }
     }
     
 }
