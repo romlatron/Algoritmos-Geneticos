@@ -53,8 +53,7 @@ public class AlgoritmosGeneticos {
 
                     chroms.remove(temp.get(0));
                     chroms.remove(temp.get(1));
-                    aux.add(temp.get(0));
-                    aux.add(temp.get(1));
+                    aux.addAll(temp);
                 } while (aux.size() < chromosomes.size());
                 chromosomes = aux;
             } else {
