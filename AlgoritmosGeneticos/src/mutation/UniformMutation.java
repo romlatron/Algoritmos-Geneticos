@@ -17,9 +17,20 @@ public class UniformMutation implements Mutation{
 
     double prob;
     List <Item> repo;
+    List <Item> boots;
+    List <Item> gloves;
+    List <Item> helmets;
+    List <Item> armors;
+    List <Item> weapons;
     
     public UniformMutation (double prob) {
         this.prob = prob;
+     /*   boots = ParseConfig.getInstance().getBoots();
+        gloves = ParseConfig.getInstance().getGloves();
+        boots = ParseConfig.getInstance().getHelmets();
+        boots = ParseConfig.getInstance().getBoots();
+        boots = ParseConfig.getInstance().getBoots();*/
+        
     }
     
     @Override

@@ -16,10 +16,11 @@ import java.util.List;
  */
 public class UniformCrossover  extends CrossoverAbstract {
 
-    double prob;
+    double probCruce;
     
-    public UniformCrossover (double prob) {
-        this.prob = prob;
+    public UniformCrossover (double prob, double probCruce) {
+        super(prob);
+        this.probCruce = probCruce;
     }
     
     @Override
@@ -27,7 +28,7 @@ public class UniformCrossover  extends CrossoverAbstract {
         List <Item> items1 = new ArrayList();
         List <Item> items2 = new ArrayList();
         for (int i=0; i<5; i++) {
-            if (Math.random() < prob) { //if rand is smaller than p then we cross
+            if (Math.random() < probCruce) { //if rand is smaller than p then we cross
                 items1.add(c2.items.get(i));
                 items2.add(c1.items.get(i));
             }
@@ -38,7 +39,7 @@ public class UniformCrossover  extends CrossoverAbstract {
         }
         double height1, height2;
         
-        if (Math.random() < prob) {
+        if (Math.random() < probCruce) {
             height1 = c2.height;
             height2 = c1.height;
         }

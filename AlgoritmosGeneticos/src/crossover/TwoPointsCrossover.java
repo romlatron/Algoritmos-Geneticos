@@ -16,6 +16,10 @@ import java.util.List;
  */
 public class TwoPointsCrossover  extends CrossoverAbstract {
 
+    public TwoPointsCrossover(double prob) {
+        super(prob);
+    }
+
     @Override
     public List <Chromosome> apply(Chromosome c1, Chromosome c2) {
         int rand1 = (int)(Math.random()*5);
