@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Acer
  */
-public class ReemplazoMutarTodos implements Reemplazo<Chromosome> {
+public class ReemplazoMutarTodos implements Reemplazo {
     public ReemplazoMutarTodos () {}
     
     @Override

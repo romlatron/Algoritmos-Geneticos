@@ -6,17 +6,18 @@
 package seleccion;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author Acer
  */
-public class SeleccionRuleta implements Seleccion<Chromosome> {
+public class SeleccionTorneoProbabilistico implements Seleccion {
     private int take;
 
-    public SeleccionRuleta (int take) {
+    public SeleccionTorneoProbabilistico (int take) {
         this.take = take;
     }
 
@@ -33,17 +34,19 @@ public class SeleccionRuleta implements Seleccion<Chromosome> {
         List<Chromosome> selectedChromosomes = new ArrayList<>();
 
 		// Select `this.take` elements
-		for (int i; i < this.take; i++) {
+		for (int i = 0; i < this.take; i++) {
 			Boolean bestFit = Math.random() < 0.75;
 			// TODO: Maybe optimize. This has O(n) but can be done in O(1) if we remove shuffle.
 			
-			List<Chromosome> shuffledChromosomes = Collections.shuffle(chromosomes);
+			List<Chromosome> shuffledChromosomes = new ArrayList<>(chromosomes);
+                        Collections.shuffle(shuffledChromosomes);
 			List<Chromosome> roundChromosomes = shuffledChromosomes.subList(0, 2);
-			Chromosome selectedChromosome = Collections.sort(roundChromosomes).get(bestFit ? 0 : 1);
+                        Collections.sort(roundChromosomes);
+			Chromosome selectedChromosome = roundChromosomes.get(bestFit ? 0 : 1);
 	
-			selectedChromosome.add(selectedChromosome);
+			selectedChromosomes.add(selectedChromosome);
 		} 
 		
-		return selectedChromosome;
+		return selectedChromosomes;
     }    
 }

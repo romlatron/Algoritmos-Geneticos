@@ -13,5 +13,5 @@ import java.util.List;
  * @author Acer
  */
 public interface Reemplazo {
-    public List <Chromosome> apply (List <Chromosome> chromosomes);
+    public List <Chromosome> apply (List <Chromosome> mutated, List <Chromosome> oldGeneration);
 }

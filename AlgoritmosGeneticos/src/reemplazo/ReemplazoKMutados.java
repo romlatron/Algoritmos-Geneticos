@@ -6,16 +6,15 @@
 package reemplazo;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
 import seleccion.Seleccion;
-import algoritmosgeneticos.seleccion;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Acer
  */
-public class ReemplazoKMutados implements Reemplazo<Chromosome> {
+public class ReemplazoKMutados implements Reemplazo {
     private Seleccion seleccion;
 
     public ReemplazoKMutados (Seleccion seleccion) {

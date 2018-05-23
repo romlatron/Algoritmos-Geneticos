@@ -6,16 +6,19 @@
 package seleccion;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Acer
  */
-public class SeleccionBoltzmann implements Seleccion<Chromosome> {
+public class SeleccionBoltzmann implements Seleccion {
     private int temperature;
     private int take;
+    private double fitnessAcc = 0;
 
     public SeleccionBoltzmann (int take, int temperature) {
         this.take = take;
@@ -36,13 +39,14 @@ public class SeleccionBoltzmann implements Seleccion<Chromosome> {
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // Set local variables
         double fitnessAcc = 0;
-        List<Chromosome> orderedChromosomes = Collections.sort(chromosomes);
+        List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
+        Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();
         
         // Generate the accumulated fitness list
-        List<Double> accumulatedFitnessList = orderedChromosomes
+        List<Double> accumulatedFitnessList = chromosomes
         .stream()
-        .map(chromosome -> fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature))
+        .map(chromosome -> this.fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature))
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
@@ -50,7 +54,7 @@ public class SeleccionBoltzmann implements Seleccion<Chromosome> {
             double randomNum = Math.random() * fitnessAcc;
             
             // Find the first element greater than randomNum
-            Chromosome selectedChromosome = orderedChromosomes.get(
+            Chromosome selectedChromosome = chromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()

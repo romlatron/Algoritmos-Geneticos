@@ -6,17 +6,20 @@
 package seleccion;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Acer
  */
-public class SeleccionRuleta implements Seleccion<Chromosome> {
+public class SeleccionRanking implements Seleccion {
     private int take;
+    private double fitnessAcc = 0;
 
-    public SeleccionRuleta (int take, int temperature) {
+    public SeleccionRanking (int take, int temperature) {
         this.take = take;
     }
 
@@ -32,8 +35,8 @@ public class SeleccionRuleta implements Seleccion<Chromosome> {
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
 		// Set local variables
-		double fitnessAcc = 0;
-		List<Chromosome> orderedChromosomes = Collections.sort(chromosomes);
+		List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
+                Collections.sort(orderedChromosomes);
 		List<Chromosome> selectedChromosomes = new ArrayList<>();
 		
 		// TODO: Check this algorithm is OK.
@@ -42,12 +45,12 @@ public class SeleccionRuleta implements Seleccion<Chromosome> {
 		// In this case, the fitness is given only by its position (It's ranking)
 		List<Double> accumulatedFitnessList = orderedChromosomes
 		.stream()
-		.map(chromosome -> fitnessAcc += 1)
+		.map(chromosome -> this.fitnessAcc += 1)
 		.collect(Collectors.toList());
 		
 		// Get `this.take` elements from the chromosome list
 		for (int i = 0; i < this.take; i++) {
-			double randomNum = Math.random() * fitnessAcc;
+			double randomNum = Math.random() * this.fitnessAcc;
 			
 			// Find the first element greater than randomNum
 			// TODO: Check this snippet is OK in all the selection algorithms.

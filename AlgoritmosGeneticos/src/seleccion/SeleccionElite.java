@@ -6,14 +6,14 @@
 package seleccion;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
+import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author Acer
  */
-public class SeleccionElite implements Seleccion<Chromosome> {
+public class SeleccionElite implements Seleccion {
     private int take;
 
     public SeleccionElite (int take) {
@@ -30,6 +30,7 @@ public class SeleccionElite implements Seleccion<Chromosome> {
 
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
-        return Collections.sort(chromosomes).subList(0, this.take);
+        Collections.sort(chromosomes);
+        return chromosomes.subList(0, this.take);
     }    
 }

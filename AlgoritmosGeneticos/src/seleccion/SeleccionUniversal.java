@@ -6,17 +6,20 @@
 package seleccion;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Acer
  */
-public class SeleccionRuleta implements Seleccion<Chromosome> {
+public class SeleccionUniversal implements Seleccion {
     private int take;
+    private double fitnessAcc = 0;
 
-    public SeleccionRuleta (int take) {
+    public SeleccionUniversal (int take) {
         this.take = take;
     }
 
@@ -33,18 +36,18 @@ public class SeleccionRuleta implements Seleccion<Chromosome> {
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // Set local variables
-        double fitnessAcc = 0;
-        List<Chromosome> orderedChromosomes = Collections.sort(chromosomes);
+        List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
+        Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();
         
         // Generate the accumulated fittness List
         List<Double> accumulatedFitnessList = orderedChromosomes
         .stream()
-        .map(chromosome -> fitnessAcc += chromosome.getFitness())
+        .map(chromosome -> this.fitnessAcc += chromosome.getFitness())
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
-        double randomNum = Math.random() * fitnessAcc;
+        double randomNum = Math.random() * this.fitnessAcc;
         for (int i = 0; i < this.take; i++) {
             double rate = (randomNum + i) / this.take;
 

@@ -6,16 +6,15 @@
 package reemplazo;
 
 import algoritmosgeneticos.Chromosome;
-import algoritmosgeneticos.item.Item;
 import seleccion.Seleccion;
-import algoritmosgeneticos.seleccion;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Acer
  */
-public class ReemplazoMixMutados implements Reemplazo<Chromosome> {
+public class ReemplazoMixMutados implements Reemplazo {
     private Seleccion seleccion;
 
     public ReemplazoMixMutados (Seleccion seleccion) {
