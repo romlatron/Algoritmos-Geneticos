@@ -16,4 +16,8 @@ public class Armor extends Item
         super(id, strength, agility, skill, resistance, life);
     }
     
+    @Override
+    public String getType() {
+        return "ARMOR";
+    }
 }

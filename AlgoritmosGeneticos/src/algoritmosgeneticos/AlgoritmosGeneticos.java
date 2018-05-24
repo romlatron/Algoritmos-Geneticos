@@ -26,7 +26,7 @@ public class AlgoritmosGeneticos {
      */
     public static void main(String[] args) throws IOException
     {
-        ParseConfig pc = ParseConfig.getInstance("config.properties");
+        ParseConfig pc = ParseConfig.getInstance("config/config.properties");
         List<Chromosome> chromosomes = pc.generatePopulation();
         
         // Define methods
@@ -58,6 +58,8 @@ public class AlgoritmosGeneticos {
                 chromosomes = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
             }
         }
+        
+        System.out.println(chromosomes.get(0));
     }
     
 }

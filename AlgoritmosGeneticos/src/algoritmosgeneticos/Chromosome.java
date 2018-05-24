@@ -46,6 +46,18 @@ public class Chromosome implements Comparable<Chromosome> {
         return true;
     }
     
+    public String toString() {
+        String ret = "";
+        
+        for(Item item: items) {
+            ret += item.getType() + ": " + item + "\n";
+        }
+        
+        ret += ("HEIGHT: " + Double.toString(height) + "\n");
+        
+        return ret;
+    }
+    
     public Chromosome (Character character, List <Item> items, double height) {
         this.character = character;
         this.items = items;

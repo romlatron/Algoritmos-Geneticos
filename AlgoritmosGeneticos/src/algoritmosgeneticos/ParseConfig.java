@@ -53,7 +53,7 @@ public class ParseConfig
         else
             throw new FileNotFoundException("config file '" + fileName + "'not found");
         
-        populationSize = Integer.valueOf("populationSize");
+        populationSize = Integer.valueOf(prop.getProperty("populationSize"));
         characterRole = prop.getProperty("character.role");
         characterType = Integer.valueOf(prop.getProperty("character.type"));
         crossoverType = prop.getProperty("crossover.type");
@@ -64,11 +64,11 @@ public class ParseConfig
         
         //Read items from item files (*.tsv)
         FileReader fileReader = new FileReader();
-        boots = fileReader.readItems("boots.tsv", "BOOTS");
-        gloves = fileReader.readItems("gloves.tsv", "GLOVES");
-        armor = fileReader.readItems("armor.tsv", "ARMOR");
-        weapon = fileReader.readItems("weapon.tsv", "WEAPON");
-        helmet = fileReader.readItems("helmet.tsv", "HELMET");
+        boots = fileReader.readItems("botas.tsv", "BOOTS");
+        gloves = fileReader.readItems("guantes.tsv", "GLOVES");
+        armor = fileReader.readItems("pecheras.tsv", "ARMOR");
+        weapon = fileReader.readItems("armas.tsv", "WEAPON");
+        helmet = fileReader.readItems("cascos.tsv", "HELMET");
     }
     
     public static ParseConfig getInstance(String fileName) throws IOException

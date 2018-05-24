@@ -29,10 +29,18 @@ public class Item
         this.resistance = resistance;
         this.life = life;
     }
+    
+    public String getType() {
+        return "ABSTRACT ITEM";
+    }
 
     @Override
     public boolean equals (Object o) {
         Item i = (Item) o;
         return i.id == this.id;
+    }
+    
+    public String toString() {
+        return Integer.toString(id);
     }
 }

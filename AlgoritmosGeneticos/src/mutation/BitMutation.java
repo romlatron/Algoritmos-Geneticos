@@ -28,11 +28,11 @@ public class BitMutation implements Mutation{
     public BitMutation (double prob, double alpha) throws IOException {
         this.prob = prob;
         this.alpha = alpha;
-        boots = ParseConfig.getInstance("config.properties").getBoots();
-        gloves = ParseConfig.getInstance("config.properties").getGloves();
-        helmets = ParseConfig.getInstance("config.properties").getHelmet();
-        armors = ParseConfig.getInstance("config.properties").getArmor();
-        weapons = ParseConfig.getInstance("config.properties").getWeapon();        
+        boots = ParseConfig.getInstance("config/config.properties").getBoots();
+        gloves = ParseConfig.getInstance("config/config.properties").getGloves();
+        helmets = ParseConfig.getInstance("config/config.properties").getHelmet();
+        armors = ParseConfig.getInstance("config/config.properties").getArmor();
+        weapons = ParseConfig.getInstance("config/config.properties").getWeapon();        
     }
     
     @Override
