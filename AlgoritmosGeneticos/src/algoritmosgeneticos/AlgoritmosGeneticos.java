@@ -34,7 +34,10 @@ public class AlgoritmosGeneticos {
         Seleccion seleccionar = new SeleccionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         Mutation mutar = new BitMutation(0.2, 1);
         Crossover recombinar = new OnePointCrossover(0.8);
-        StopCondition condicionCorte = new MaximumGenCondition(20);
+        StopCondition condicionCorte = new MaximumGenCondition(10000);
+        Seleccion findBestSelection = new SeleccionElite(1);
+
+        System.out.println(findBestSelection.apply(chromosomes));
 
         // Iterate to stop condition
         Boolean rmt = false;
@@ -59,7 +62,8 @@ public class AlgoritmosGeneticos {
             }
         }
         
-        System.out.println(chromosomes.get(0));
+        
+        System.out.println(findBestSelection.apply(chromosomes));
     }
     
 }

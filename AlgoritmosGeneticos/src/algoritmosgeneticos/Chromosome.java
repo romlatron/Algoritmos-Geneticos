@@ -54,6 +54,7 @@ public class Chromosome implements Comparable<Chromosome> {
         }
         
         ret += ("HEIGHT: " + Double.toString(height) + "\n");
+        ret += ("FITNESS: " + Double.toString(this.getFitness()));
         
         return ret;
     }

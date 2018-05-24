@@ -5,8 +5,6 @@
  */
 package algoritmosgeneticos.item;
 
-import sun.font.TrueTypeGlyphMapper;
-
 /**
  *
  * @author v1nkey
