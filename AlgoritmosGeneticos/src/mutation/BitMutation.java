@@ -6,33 +6,33 @@
 package mutation;
 
 import algoritmosgeneticos.Chromosome;
+import algoritmosgeneticos.ParseConfig;
 import algoritmosgeneticos.item.*;
+import java.io.IOException;
 import java.util.List;
 
 /**
  *
  * @author Acer
  */
-public class MutationdeBit implements Mutation{
+public class BitMutation implements Mutation{
 
     double prob;
     double alpha; //for uniform mutation just set alpha to 1
-    List <Item> repo;
     List <Item> boots;
     List <Item> gloves;
     List <Item> helmets;
     List <Item> armors;
     List <Item> weapons;
     
-    public MutationdeBit (double prob, double alpha) {
+    public BitMutation (double prob, double alpha) throws IOException {
         this.prob = prob;
         this.alpha = alpha;
-     /*   boots = ParseConfig.getInstance().getBoots();
-        gloves = ParseConfig.getInstance().getGloves();
-        helmets = ParseConfig.getInstance().getHelmets();
-        armors = ParseConfig.getInstance().getArmors();
-        weapons = ParseConfig.getInstance().getWeapons();*/
-        
+        boots = ParseConfig.getInstance("config.properties").getBoots();
+        gloves = ParseConfig.getInstance("config.properties").getGloves();
+        helmets = ParseConfig.getInstance("config.properties").getHelmet();
+        armors = ParseConfig.getInstance("config.properties").getArmor();
+        weapons = ParseConfig.getInstance("config.properties").getWeapon();        
     }
     
     @Override

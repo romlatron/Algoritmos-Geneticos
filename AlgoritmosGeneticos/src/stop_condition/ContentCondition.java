@@ -12,28 +12,26 @@ import java.util.List;
  *
  * @author Acer
  */
-public class BestFitnessCondition implements StopCondition{
+public class ContentCondition implements StopCondition{
     
     int n; //the number of times the best fitness does not evolve in a row
     int maxN; // the maximum number of n before we stop the algorithm
     double bestFitness;
     
-    public BestFitnessCondition (int maxN) {
+    public ContentCondition (int maxN) {
         bestFitness = 0;
         n = 0;
     }
     
     @Override
     public boolean stop(List<Chromosome> generation) {
-        boolean betterFitness = false;
         for (Chromosome chromosome : generation) {
             if (chromosome.getFitness() > this.bestFitness) {
                 this.bestFitness = chromosome.getFitness();
-                betterFitness = true;
                 n = 0;
+                return false;
             }
         }
-        if (betterFitness) return false;
         n++;
         return n==maxN ;
     }
