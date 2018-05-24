@@ -57,7 +57,7 @@ public class SeleccionUniversal implements Seleccion {
                     accumulatedFitnessList
                     .stream()
                     .filter(fitness -> fitness > rate)
-                    .findFirst()
+                    .findFirst().get()
                 )
             );
 

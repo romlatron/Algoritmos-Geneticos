@@ -19,6 +19,10 @@ public class SeleccionRuleta implements Seleccion {
     private int take;
     private double fitnessAcc = 0;
 
+    
+    public SeleccionRuleta () {
+    }
+    
     public SeleccionRuleta (int take) {
         this.take = take;
     }
@@ -54,7 +58,7 @@ public class SeleccionRuleta implements Seleccion {
                     accumulatedFitnessList
                     .stream()
                     .filter(fitness -> fitness > randomNum)
-                    .findFirst()
+                    .findFirst().get()
                 )
             );
 

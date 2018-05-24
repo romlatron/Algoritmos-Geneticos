@@ -15,6 +15,9 @@ import java.util.List;
  */
 public class SeleccionElite implements Seleccion {
     private int take;
+    
+    public SeleccionElite () {
+    }
 
     public SeleccionElite (int take) {
         this.take = take;
