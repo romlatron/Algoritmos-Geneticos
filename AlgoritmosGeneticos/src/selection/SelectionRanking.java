@@ -59,7 +59,7 @@ public class SelectionRanking implements Selection {
                     accumulatedFitnessList
                     .stream()
                     .filter(fitness -> fitness > randomNum)
-                    .findFirst()
+                    .findFirst().get()
                 )
             );
 

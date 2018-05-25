@@ -16,4 +16,16 @@ public class Weapon extends Item
         super(id, strength, agility, skill, resistance, life);
     }
     
+    @Override
+    public String getType() {
+        return "WEAPON";
+    }
+    
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Weapon)) return false;
+        Weapon i = (Weapon) o;
+        return i.id == this.id;
+    }
+    
 }

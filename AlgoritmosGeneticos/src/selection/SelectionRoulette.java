@@ -19,9 +19,9 @@ public class SelectionRoulette implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
-    public SelectionRoulette (int take) {
-        this.take = take;
-    }
+    public SelectionRoulette () {}
+    
+    public SelectionRoulette (int take) { this.take = take; }
 
     @Override
     public void next () {}
@@ -54,7 +54,7 @@ public class SelectionRoulette implements Selection {
                     accumulatedFitnessList
                     .stream()
                     .filter(fitness -> fitness > randomNum)
-                    .findFirst()
+                    .findFirst().get()
                 )
             );
 

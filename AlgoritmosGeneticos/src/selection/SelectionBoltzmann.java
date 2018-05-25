@@ -59,7 +59,7 @@ public class SelectionBoltzmann implements Selection {
                     accumulatedFitnessList
                     .stream()
                     .filter(fitness -> fitness > randomNum)
-                    .findFirst()
+                    .findFirst().get()
                 )
             );
 

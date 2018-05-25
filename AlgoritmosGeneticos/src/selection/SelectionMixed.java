@@ -44,15 +44,10 @@ public class SelectionMixed implements Selection {
         methodA.setTake((int) (probability * this.take));
         methodB.setTake(this.take - (int) (probability * this.take));
 
-        // Select first chromosomes
+        // Select chromosomes through method A
         selected.addAll(methodA.apply(chromosomes));
 
-        // Remove already selected chromosomes
-        selected.forEach((s) -> {
-            chromCopy.remove(s);
-        });
-
-        // Select last chromosomes
+        // Select chromosomes through method B
         selected.addAll(methodB.apply(chromCopy));
 
         return selected;

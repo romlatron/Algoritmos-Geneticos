@@ -88,9 +88,8 @@ public class ParseConfig
         else
             throw new FileNotFoundException("config file '" + fileName + "'not found");
         
-        populationSize = Integer.valueOf("populationSize");
-        
         //Character
+        populationSize = Integer.valueOf(prop.getProperty("populationSize"));
         characterRole = prop.getProperty("character.role");
         characterType = Integer.valueOf(prop.getProperty("character.type"));
         
@@ -138,11 +137,11 @@ public class ParseConfig
         
         //Read items from item files (*.tsv)
         FileReader fileReader = new FileReader();
-        boots = fileReader.readItems("boots.tsv", "BOOTS");
-        gloves = fileReader.readItems("gloves.tsv", "GLOVES");
-        armor = fileReader.readItems("armor.tsv", "ARMOR");
-        weapon = fileReader.readItems("weapon.tsv", "WEAPON");
-        helmet = fileReader.readItems("helmet.tsv", "HELMET");
+        boots = fileReader.readItems("botas.tsv", "BOOTS");
+        gloves = fileReader.readItems("guantes.tsv", "GLOVES");
+        armor = fileReader.readItems("pecheras.tsv", "ARMOR");
+        weapon = fileReader.readItems("armas.tsv", "WEAPON");
+        helmet = fileReader.readItems("cascos.tsv", "HELMET");
     }
     
     public static ParseConfig getInstance(String fileName) throws IOException
@@ -170,7 +169,7 @@ public class ParseConfig
             items.add(weapon.get((int) (Math.random() * weapon.size())));
             items.add(helmet.get((int) (Math.random() * helmet.size())));
 
-            Chromosome chromosome = new Chromosome(c, items, Math.random() * 0.2 + 1);
+            Chromosome chromosome = new Chromosome(c, items, Math.random() * 0.7 + 1.3);
             chromosomes.add(chromosome);
         }
         
@@ -356,7 +355,7 @@ public class ParseConfig
                 break;
                 
             case "optimum" :
-                sc = new SolucionOptimaCondition(scOptimumLevel);
+                sc = new OptimalSolutionCondition(scOptimumLevel);
                 break;
                 
             case "structure" :

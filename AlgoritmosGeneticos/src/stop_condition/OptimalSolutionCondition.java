@@ -12,11 +12,11 @@ import java.util.List;
  *
  * @author Acer
  */
-public class SolucionOptimaCondition implements StopCondition {
+public class OptimalSolutionCondition implements StopCondition {
 
     private double level;
     
-    public SolucionOptimaCondition (double level) {
+    public OptimalSolutionCondition (double level) {
         this.level = level;
     }
     

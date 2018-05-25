@@ -26,7 +26,7 @@ public class FileReader {
     public FileReader() {}
     
     public List<Item> readItems(String filename, String itemType) {
-        File file = new File("./testdata/" + filename);
+        File file = new File("testdata/" + filename);
         List<Item> items = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file).useLocale(Locale.US);

@@ -21,6 +21,7 @@ public class ContentCondition implements StopCondition{
     public ContentCondition (int maxN) {
         bestFitness = 0;
         n = 0;
+        this.maxN = maxN;
     }
     
     @Override
