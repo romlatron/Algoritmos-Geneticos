@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -14,11 +15,13 @@ import java.util.List;
  *
  * @author Acer
  */
-public class SeleccionTorneoProbabilistico implements Seleccion {
-    private int take;
+public class SelectionDeterministTournament implements Selection {
+	private int take;
+    private int round;
 
-    public SeleccionTorneoProbabilistico (int take) {
-        this.take = take;
+    public SelectionDeterministTournament (int take, int round) {
+		this.take = take;
+		this.round = round;
     }
 
     @Override
@@ -35,14 +38,11 @@ public class SeleccionTorneoProbabilistico implements Seleccion {
 
 		// Select `this.take` elements
 		for (int i = 0; i < this.take; i++) {
-			Boolean bestFit = Math.random() < 0.75;
-			// TODO: Maybe optimize. This has O(n) but can be done in O(1) if we remove shuffle.
-			
 			List<Chromosome> shuffledChromosomes = new ArrayList<>(chromosomes);
                         Collections.shuffle(shuffledChromosomes);
-			List<Chromosome> roundChromosomes = shuffledChromosomes.subList(0, 2);
+			List<Chromosome> roundChromosomes = shuffledChromosomes.subList(0, this.round);
                         Collections.sort(roundChromosomes);
-			Chromosome selectedChromosome = roundChromosomes.get(bestFit ? 0 : 1);
+			Chromosome selectedChromosome = roundChromosomes.get(0);
 	
 			selectedChromosomes.add(selectedChromosome);
 		} 

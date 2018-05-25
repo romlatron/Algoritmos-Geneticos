@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
  *
  * @author Acer
  */
-public class SeleccionRanking implements Seleccion {
+public class SelectionRanking implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
-    public SeleccionRanking (int take, int temperature) {
+    public SelectionRanking (int take, int temperature) {
         this.take = take;
     }
 

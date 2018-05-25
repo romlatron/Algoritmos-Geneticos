@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reemplazo;
+package replacement;
 
 import algoritmosgeneticos.Chromosome;
 import algoritmosgeneticos.item.Item;
@@ -13,8 +13,8 @@ import java.util.List;
  *
  * @author Acer
  */
-public class ReemplazoMutarTodos implements Reemplazo {
-    public ReemplazoMutarTodos () {}
+public class ReplaceAllMutated implements Replacement {
+    public ReplaceAllMutated () {}
     
     @Override
     public List<Chromosome> apply (List<Chromosome> mutated, List<Chromosome> oldGeneration) {
@@ -25,6 +25,6 @@ public class ReemplazoMutarTodos implements Reemplazo {
 // select.setTake(reemplazo.TAKE_K);
 // newGeneration = new ArrayList();
 // do {
-//     List<> aux = Reemplazo(newGeneration, oldgeneration);
+//     List<> aux = Replacement(newGeneration, oldgeneration);
 //     newGeneration.addAll(aux);
 // } while (newGeneration.size() != N);

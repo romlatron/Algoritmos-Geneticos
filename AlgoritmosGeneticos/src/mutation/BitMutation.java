@@ -25,6 +25,16 @@ public class BitMutation implements Mutation{
     List <Item> armors;
     List <Item> weapons;
     
+    public BitMutation (double prob) throws IOException {
+        this.prob = prob;
+        this.alpha = 1;
+        boots = ParseConfig.getInstance("config.properties").getBoots();
+        gloves = ParseConfig.getInstance("config.properties").getGloves();
+        helmets = ParseConfig.getInstance("config.properties").getHelmet();
+        armors = ParseConfig.getInstance("config.properties").getArmor();
+        weapons = ParseConfig.getInstance("config.properties").getWeapon();        
+    }
+    
     public BitMutation (double prob, double alpha) throws IOException {
         this.prob = prob;
         this.alpha = alpha;

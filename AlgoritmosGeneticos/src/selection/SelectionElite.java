@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.Collections;
@@ -13,10 +13,10 @@ import java.util.List;
  *
  * @author Acer
  */
-public class SeleccionElite implements Seleccion {
+public class SelectionElite implements Selection {
     private int take;
 
-    public SeleccionElite (int take) {
+    public SelectionElite (int take) {
         this.take = take;
     }
 

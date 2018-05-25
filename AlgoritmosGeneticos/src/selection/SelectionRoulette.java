@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
  *
  * @author Acer
  */
-public class SeleccionUniversal implements Seleccion {
+public class SelectionRoulette implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
-    public SeleccionUniversal (int take) {
+    public SelectionRoulette (int take) {
         this.take = take;
     }
 
@@ -30,8 +30,6 @@ public class SeleccionUniversal implements Seleccion {
     public void setTake (int take) {
         this.take = take;
     }
-
-    // TODO: Change it
 
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
@@ -47,23 +45,22 @@ public class SeleccionUniversal implements Seleccion {
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
-        double randomNum = Math.random() * this.fitnessAcc;
         for (int i = 0; i < this.take; i++) {
-            double rate = (randomNum + i) / this.take;
-
-            // Find the first element greater than `rate`
+            double randomNum = Math.random() * this.fitnessAcc;
+            
+            // Find the first element greater than randomNum
             Chromosome selectedChromosome = orderedChromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()
-                    .filter(fitness -> fitness > rate)
+                    .filter(fitness -> fitness > randomNum)
                     .findFirst()
                 )
             );
 
             selectedChromosomes.add(selectedChromosome);
         }
-
+        
         return selectedChromosomes;
     }    
 }

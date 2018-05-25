@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
@@ -15,41 +15,46 @@ import java.util.stream.Collectors;
  *
  * @author Acer
  */
-public class SeleccionRuleta implements Seleccion {
+public class SelectionBoltzmann implements Selection {
+    private int temperature;
     private int take;
     private double fitnessAcc = 0;
 
-    public SeleccionRuleta (int take) {
+    public SelectionBoltzmann (int take, int temperature) {
         this.take = take;
+        this.temperature = temperature;
     }
 
     @Override
-    public void next () {}
+    public void next () {
+        this.temperature = Math.max(this.temperature - 1, 1);
+    }
 
     @Override
     public void setTake (int take) {
         this.take = take;
     }
-
+    
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // Set local variables
+        double fitnessAcc = 0;
         List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
         Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();
         
-        // Generate the accumulated fittness List
-        List<Double> accumulatedFitnessList = orderedChromosomes
+        // Generate the accumulated fitness list
+        List<Double> accumulatedFitnessList = chromosomes
         .stream()
-        .map(chromosome -> this.fitnessAcc += chromosome.getFitness())
+        .map(chromosome -> this.fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature))
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
         for (int i = 0; i < this.take; i++) {
-            double randomNum = Math.random() * this.fitnessAcc;
+            double randomNum = Math.random() * fitnessAcc;
             
             // Find the first element greater than randomNum
-            Chromosome selectedChromosome = orderedChromosomes.get(
+            Chromosome selectedChromosome = chromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()

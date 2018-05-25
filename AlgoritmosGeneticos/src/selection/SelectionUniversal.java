@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
@@ -15,57 +15,55 @@ import java.util.stream.Collectors;
  *
  * @author Acer
  */
-public class SeleccionBoltzmann implements Seleccion {
-    private int temperature;
+public class SelectionUniversal implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
-    public SeleccionBoltzmann (int take, int temperature) {
+    public SelectionUniversal (int take) {
         this.take = take;
-        this.temperature = temperature;
     }
 
     @Override
-    public void next () {
-        this.temperature = Math.max(this.temperature - 1, 1);
-    }
+    public void next () {}
 
     @Override
     public void setTake (int take) {
         this.take = take;
     }
-    
+
+    // TODO: Change it
+
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // Set local variables
-        double fitnessAcc = 0;
         List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
         Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();
         
-        // Generate the accumulated fitness list
-        List<Double> accumulatedFitnessList = chromosomes
+        // Generate the accumulated fittness List
+        List<Double> accumulatedFitnessList = orderedChromosomes
         .stream()
-        .map(chromosome -> this.fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature))
+        .map(chromosome -> this.fitnessAcc += chromosome.getFitness())
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
+        double randomNum = Math.random() * this.fitnessAcc;
         for (int i = 0; i < this.take; i++) {
-            double randomNum = Math.random() * fitnessAcc;
-            
-            // Find the first element greater than randomNum
-            Chromosome selectedChromosome = chromosomes.get(
+            double rate = (randomNum + i) / this.take;
+
+            // Find the first element greater than `rate`
+            Chromosome selectedChromosome = orderedChromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()
-                    .filter(fitness -> fitness > randomNum)
+                    .filter(fitness -> fitness > rate)
                     .findFirst()
                 )
             );
 
             selectedChromosomes.add(selectedChromosome);
         }
-        
+
         return selectedChromosomes;
     }    
 }

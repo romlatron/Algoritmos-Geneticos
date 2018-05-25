@@ -5,11 +5,82 @@
  */
 package algoritmosgeneticos;
 
+import selection.SelectionElite;
+import replacement.ReplaceKMutated;
 import mutation.*;
 import crossover.*;
-import reemplazo.*;
-import seleccion.*;;
+;
 import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import selection.Selection;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import selection.Selection;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;import stop_condition.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import replacement.Replacement;import stop_condition.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,15 +101,18 @@ public class AlgoritmosGeneticos {
         List<Chromosome> chromosomes = pc.generatePopulation();
         
         // Define methods
-        Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
-        Seleccion seleccionar = new SeleccionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
-        Mutation mutar = new BitMutation(0.2, 1);
+        Crossover crossover = pc.selectCrossover();
+        Mutation mutation = pc.selectMutation();
+        StopCondition stopCondition = pc.selectStopCondition();
+        
+        
+        Replacement reemplazar = new ReplaceKMutated(new SelectionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
+        Selection seleccionar = new SelectionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         Crossover recombinar = new OnePointCrossover(0.8);
-        StopCondition condicionCorte = new MaximumGenCondition(20);
 
         // Iterate to stop condition
         Boolean rmt = false;
-        while (!condicionCorte.stop(chromosomes)) {
+        while (!stopCondition.stop(chromosomes)) {
 
             // If the replacement strategy is mutate all, do some extra logic
             if (rmt) {
@@ -47,7 +121,7 @@ public class AlgoritmosGeneticos {
                 List<Chromosome> chroms = new ArrayList<>(chromosomes);
                 
                 do {
-                    List<Chromosome> temp = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes))), chroms);
+                    List<Chromosome> temp = reemplazar.apply(mutation.apply(recombinar.apply(seleccionar.apply(chromosomes))), chroms);
 
                     chroms.remove(temp.get(0));
                     chroms.remove(temp.get(1));
@@ -55,7 +129,7 @@ public class AlgoritmosGeneticos {
                 } while (aux.size() < chromosomes.size());
                 chromosomes = aux;
             } else {
-                chromosomes = reemplazar.apply(mutar.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
+                chromosomes = reemplazar.apply(mutation.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
             }
         }
     }

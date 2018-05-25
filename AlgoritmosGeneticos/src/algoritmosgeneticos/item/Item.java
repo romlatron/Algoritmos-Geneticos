@@ -11,7 +11,7 @@ import sun.font.TrueTypeGlyphMapper;
  *
  * @author v1nkey
  */
-public class Item 
+public abstract class Item 
 {
     protected int id;
     public double strength;

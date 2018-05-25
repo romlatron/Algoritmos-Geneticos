@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package seleccion;
+package selection;
 
 import algoritmosgeneticos.Chromosome;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import java.util.List;
  *
  * @author Acer
  */
-public class SeleccionMixta implements Seleccion {
+public class SelectionMixed implements Selection {
     private int take;
-    private Seleccion methodA;
-    private Seleccion methodB;
+    private Selection methodA;
+    private Selection methodB;
     private double probability;
 
-    public SeleccionMixta (Seleccion methodA, Seleccion methodB, double probability, int take) {
+    public SelectionMixed (Selection methodA, Selection methodB, double probability, int take) {
         this.methodA = methodA;
         this.methodB = methodB;
         this.probability = probability;

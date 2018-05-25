@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reemplazo;
+package replacement;
 
 import algoritmosgeneticos.Chromosome;
-import seleccion.Seleccion;
 import java.util.ArrayList;
 import java.util.List;
+import selection.Selection;
 
 /**
  *
  * @author Acer
  */
-public class ReemplazoKMutados implements Reemplazo {
-    private Seleccion seleccion;
+public class ReplaceKMutated implements Replacement {
+    private Selection selection;
 
-    public ReemplazoKMutados (Seleccion seleccion) {
-        this.seleccion = seleccion;
+    public ReplaceKMutated (Selection selection) {
+        this.selection = selection;
     }
     
     @Override
@@ -26,9 +26,9 @@ public class ReemplazoKMutados implements Reemplazo {
         List<Chromosome> replaced = new ArrayList<>();
         replaced.addAll(mutated);
         
-        seleccion.setTake(oldGeneration.size() - mutated.size());
+        selection.setTake(oldGeneration.size() - mutated.size());
         
-        replaced.addAll(seleccion.apply(oldGeneration));
+        replaced.addAll(selection.apply(oldGeneration));
         return replaced;
     }    
 }
@@ -36,7 +36,7 @@ public class ReemplazoKMutados implements Reemplazo {
 // select.setTake(reemplazo.TAKE_K);
 // newGeneration = new ArrayList();
 // do {
-//     List<> aux = Reemplazo(newGeneration, oldgeneration);
+//     List<> aux = Replacement(newGeneration, oldgeneration);
 //     select.next();
 //     newGeneration.addAll(aux);
 // } while (newGeneration.size() != N);
