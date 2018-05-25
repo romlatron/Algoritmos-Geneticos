@@ -96,7 +96,7 @@ public class ParseConfig
             items.add(weapon.get((int) (Math.random() * weapon.size())));
             items.add(helmet.get((int) (Math.random() * helmet.size())));
 
-            Chromosome chromosome = new Chromosome(c, items, Math.random() * 0.2 + 1);
+            Chromosome chromosome = new Chromosome(c, items, Math.random() * 0.7 + 1.3);
             chromosomes.add(chromosome);
         }
         

@@ -20,4 +20,11 @@ public class Boot extends Item
     public String getType() {
         return "BOOT";
     }
+    
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Boot)) return false;
+        Boot i = (Boot) o;
+        return i.id == this.id;
+    }
 }

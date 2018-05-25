@@ -9,6 +9,7 @@ import algoritmosgeneticos.Chromosome;
 import algoritmosgeneticos.ParseConfig;
 import algoritmosgeneticos.item.*;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,19 +42,19 @@ public class BitMutation implements Mutation{
             for (Item item : chromosome.items) {
                 if (Math.random() < prob) {
                     if (item instanceof Boot)
-                        item = boots.get((int) (boots.size() * Math.random()));
+                        Collections.replaceAll (chromosome.items, item, boots.get((int) (boots.size() * Math.random())));
                     
                     else if (item instanceof Glove)
-                        item = boots.get((int) (gloves.size() * Math.random()));
+                        Collections.replaceAll (chromosome.items, item, gloves.get((int) (gloves.size() * Math.random())));
                     
                     else if (item instanceof Helmet)
-                        item = boots.get((int) (helmets.size() * Math.random()));
+                        Collections.replaceAll (chromosome.items, item, helmets.get((int) (helmets.size() * Math.random())));
                     
                     else if (item instanceof Armor)
-                        item = boots.get((int) (armors.size() * Math.random()));
+                        Collections.replaceAll (chromosome.items, item, armors.get((int) (armors.size() * Math.random())));
                     
                     else
-                        item = boots.get((int) (weapons.size() * Math.random()));
+                        Collections.replaceAll (chromosome.items, item, weapons.get((int) (weapons.size() * Math.random())));
                 }
             }
             if (Math.random() < prob)

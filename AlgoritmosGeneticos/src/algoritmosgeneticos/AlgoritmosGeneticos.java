@@ -1,4 +1,4 @@
-/*
+/*v
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -31,10 +31,10 @@ public class AlgoritmosGeneticos {
         
         // Define methods
         Reemplazo reemplazar = new ReemplazoKMutados(new SeleccionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
-        Seleccion seleccionar = new SeleccionMixta(new SeleccionRuleta(), new SeleccionElite(), 0, 30); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
+        Seleccion seleccionar = new SeleccionMixta(new SeleccionRuleta(), new SeleccionElite(), 0, 200); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
         Mutation mutar = new BitMutation(0.2, 1);
-        Crossover recombinar = new OnePointCrossover(0.8);
-        StopCondition condicionCorte = new StructureCondition(60, 3);
+        Crossover recombinar = new OnePointCrossover(0.2);
+        StopCondition condicionCorte = new StructureCondition(190, 1);
         Seleccion findBestSelection = new SeleccionElite(1);
 
         System.out.println(findBestSelection.apply(chromosomes));

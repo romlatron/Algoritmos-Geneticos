@@ -20,4 +20,11 @@ public class Armor extends Item
     public String getType() {
         return "ARMOR";
     }
+    
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Armor)) return false;
+        Armor i = (Armor) o;
+        return i.id == this.id;
+    }
 }

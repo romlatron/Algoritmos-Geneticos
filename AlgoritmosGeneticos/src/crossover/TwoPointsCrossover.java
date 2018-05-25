@@ -30,22 +30,27 @@ public class TwoPointsCrossover  extends CrossoverAbstract {
             items1.add(c1.items.get(i));
             items2.add(c2.items.get(i));
         }
-        for (int i=rand1; i<=rand2; i++) {
-            items1.add(c2.items.get(i));        
-            items2.add(c1.items.get(i));
-        }
-        for (int i=rand2; i<5; i++) {
-            items1.add(c1.items.get(i));
-            items2.add(c2.items.get(i));
-        }
+        
         
         double height1, height2;
         
         if (rand2 == 5) {
+            for (int i=rand1; i<5; i++) {
+                items1.add(c2.items.get(i));
+                items2.add(c1.items.get(i));
+            }
             height1 = c2.height;
             height2 = c1.height;
         }
         else {
+            for (int i=rand1; i<=rand2; i++) {
+            items1.add(c2.items.get(i));        
+            items2.add(c1.items.get(i));
+            }
+            for (int i=rand2 + 1; i<5; i++) {
+                items1.add(c1.items.get(i));
+                items2.add(c2.items.get(i));
+            }
             height1 = c1.height;
             height2 = c2.height;
         }

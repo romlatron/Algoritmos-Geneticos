@@ -21,4 +21,11 @@ public class Weapon extends Item
         return "WEAPON";
     }
     
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Weapon)) return false;
+        Weapon i = (Weapon) o;
+        return i.id == this.id;
+    }
+    
 }

@@ -20,4 +20,11 @@ public class Glove extends Item
     public String getType() {
         return "GLOVE";
     }
+    
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Glove)) return false;
+        Glove i = (Glove) o;
+        return i.id == this.id;
+    }
 }

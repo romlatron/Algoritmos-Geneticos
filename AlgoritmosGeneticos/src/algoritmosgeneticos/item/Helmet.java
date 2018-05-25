@@ -21,4 +21,11 @@ public class Helmet extends Item
         return "HELMET";
     }
     
+    @Override
+    public boolean equals (Object o) {
+        if (!(o instanceof Helmet)) return false;
+        Helmet i = (Helmet) o;
+        return i.id == this.id;
+    }
+    
 }

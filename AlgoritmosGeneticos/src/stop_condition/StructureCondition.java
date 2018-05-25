@@ -46,6 +46,7 @@ public class StructureCondition implements StopCondition{
                 }
             }
         }
+        this.previousGeneration = generation;
         n = 0;
         return false;
     }
