@@ -29,7 +29,10 @@ public class StructureCondition implements StopCondition{
     @Override
     public boolean stop(List<Chromosome> generation) {
         int notChanged = 0;
-        if (previousGeneration == null) return false;
+        if (previousGeneration == null)  {
+            this.previousGeneration = generation;
+            return false;
+        }
         for (Chromosome chromosome : generation) {
             for (Chromosome prevChromosome : previousGeneration) {
                 if (chromosome.equals(prevChromosome)) {
