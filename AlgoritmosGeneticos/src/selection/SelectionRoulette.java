@@ -57,7 +57,7 @@ public class SelectionRoulette implements Selection {
                     .findFirst().get()
                 )
             );
-
+            
             selectedChromosomes.add(selectedChromosome);
         }
         

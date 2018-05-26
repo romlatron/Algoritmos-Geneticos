@@ -19,6 +19,8 @@ public class SelectionUniversal implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
+    public SelectionUniversal () {}
+    
     public SelectionUniversal (int take) {
         this.take = take;
     }
@@ -47,16 +49,17 @@ public class SelectionUniversal implements Selection {
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
-        double randomNum = Math.random() * this.fitnessAcc;
+        double randomNum = Math.random();
+
         for (int i = 0; i < this.take; i++) {
             double rate = (randomNum + i) / this.take;
-
+            
             // Find the first element greater than `rate`
             Chromosome selectedChromosome = orderedChromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()
-                    .filter(fitness -> fitness > rate)
+                    .filter(fitness -> (fitness/this.fitnessAcc) > rate)
                     .findFirst().get()
                 )
             );

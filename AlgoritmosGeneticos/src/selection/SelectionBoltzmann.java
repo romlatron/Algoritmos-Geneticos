@@ -38,7 +38,6 @@ public class SelectionBoltzmann implements Selection {
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // Set local variables
-        double fitnessAcc = 0;
         List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
         Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();

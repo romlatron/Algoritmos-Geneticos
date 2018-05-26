@@ -19,7 +19,7 @@ public class SelectionRanking implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
-    public SelectionRanking (int take, int temperature) {
+    public SelectionRanking (int take) {
         this.take = take;
     }
 
