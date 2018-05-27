@@ -27,7 +27,6 @@ public class SelectionBoltzmann implements Selection {
 
     @Override
     public void next () {
-        this.temperature = Math.max(this.temperature - 1, 1);
     }
 
     @Override
@@ -64,6 +63,8 @@ public class SelectionBoltzmann implements Selection {
 
             selectedChromosomes.add(selectedChromosome);
         }
+        
+        this.temperature = Math.max(this.temperature - 1, 1);
         
         return selectedChromosomes;
     }    
