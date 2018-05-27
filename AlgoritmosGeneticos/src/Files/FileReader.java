@@ -33,6 +33,7 @@ public class FileReader {
             sc.nextLine();
 
             while(sc.hasNextInt()){
+                System.out.println("READING");
                 switch(itemType){
                 case "BOOTS":
                     items.add(new Boot(sc.nextInt(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),sc.nextDouble()));

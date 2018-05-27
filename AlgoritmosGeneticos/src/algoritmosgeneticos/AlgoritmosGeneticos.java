@@ -35,12 +35,10 @@ public class AlgoritmosGeneticos {
         Mutation mutation = pc.selectMutation();
         StopCondition stopCondition = pc.selectStopCondition();
         
+        Selection seleccionar = new SelectionMixed(new SelectionBoltzmann(400), new SelectionElite(), 0.8, 10); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
+        Replacement reemplazar = new ReplaceKMutated(seleccionar); // 10 is param, 0 is not important since it gets overwritten in replacement.
+        Crossover recombinar = new UniformCrossover(0.5, 0.5);
         
-        Replacement reemplazar = new ReplaceKMutated(new SelectionElite(0)); // 10 is param, 0 is not important since it gets overwritten in replacement.
-        Selection seleccionar = new SelectionElite((int) (10)); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
-        Crossover recombinar = new OnePointCrossover(0.8);
-        
-        StopCondition condicionCorte = new StructureCondition(190, 1);
         Selection findBestSelection = new SelectionElite(1);
 
         System.out.println(findBestSelection.apply(chromosomes));
@@ -65,9 +63,12 @@ public class AlgoritmosGeneticos {
                 chromosomes = aux;
             } else {
                 chromosomes = reemplazar.apply(mutation.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
-                System.out.println(findBestSelection.apply(chromosomes));
+                System.out.println(findBestSelection.apply(chromosomes).get(0).getFitness());
             }
+            
         }
+        System.out.println(findBestSelection.apply(chromosomes));
+
     }
     
     // TODO: Add Generational gap
