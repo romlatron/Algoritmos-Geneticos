@@ -32,11 +32,3 @@ public class ReplaceKMutated implements Replacement {
         return replaced;
     }    
 }
-
-// select.setTake(reemplazo.TAKE_K);
-// newGeneration = new ArrayList();
-// do {
-//     List<> aux = Replacement(newGeneration, oldgeneration);
-//     select.next();
-//     newGeneration.addAll(aux);
-// } while (newGeneration.size() != N);

@@ -21,10 +21,3 @@ public class ReplaceAllMutated implements Replacement {
         return mutated;
     }    
 }
-
-// select.setTake(reemplazo.TAKE_K);
-// newGeneration = new ArrayList();
-// do {
-//     List<> aux = Replacement(newGeneration, oldgeneration);
-//     newGeneration.addAll(aux);
-// } while (newGeneration.size() != N);

@@ -70,4 +70,8 @@ public class AlgoritmosGeneticos {
         }
     }
     
+    // TODO: Add Generational gap
+    // TODO: Solve issue w/ReplacementAllMutated. (Is this just a special case for ReplaceAllMutated?)
+    // TODO: Check Boltzmann and Ranking
+    
 }

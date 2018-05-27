@@ -31,11 +31,3 @@ public class ReplaceMixMutated implements Replacement {
         return selection.apply(replaced);
     }    
 }
-
-// select.setTake(reemplazo.TAKE_K);
-// newGeneration = new ArrayList();
-// do {
-//     List<> aux = Replacement(newGeneration, oldgeneration);
-//     select.next();
-//     newGeneration.addAll(aux);
-// } while (newGeneration.size() != N);
