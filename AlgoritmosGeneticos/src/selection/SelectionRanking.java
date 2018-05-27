@@ -34,27 +34,27 @@ public class SelectionRanking implements Selection {
 
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
-		// Set local variables
-		List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
-                Collections.sort(orderedChromosomes);
-		List<Chromosome> selectedChromosomes = new ArrayList<>();
-		
-		// TODO: Check this algorithm is OK.
+        // Set local variables
+        List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
+        Collections.sort(orderedChromosomes);
+        List<Chromosome> selectedChromosomes = new ArrayList<>();
 
-		// Generate the accumulated fitness list
-		// In this case, the fitness is given only by its position (It's ranking)
-		List<Double> accumulatedFitnessList = orderedChromosomes
-		.stream()
-		.map(chromosome -> this.fitnessAcc += 1)
-		.collect(Collectors.toList());
-		
-		// Get `this.take` elements from the chromosome list
-		for (int i = 0; i < this.take; i++) {
-			double randomNum = Math.random() * this.fitnessAcc;
-			
-			// Find the first element greater than randomNum
-			// TODO: Check this snippet is OK in all the selection algorithms.
-			Chromosome selectedChromosome = orderedChromosomes.get(
+        // TODO: Check this algorithm is OK.
+
+        // Generate the accumulated fitness list
+        // In this case, the fitness is given only by its position (It's ranking)
+        List<Double> accumulatedFitnessList = orderedChromosomes
+        .stream()
+        .map(chromosome -> this.fitnessAcc += 1)
+        .collect(Collectors.toList());
+
+        // Get `this.take` elements from the chromosome list
+        for (int i = 0; i < this.take; i++) {
+            double randomNum = Math.random() * this.fitnessAcc;
+
+            // Find the first element greater than randomNum
+            // TODO: Check this snippet is OK in all the selection algorithms.
+            Chromosome selectedChromosome = orderedChromosomes.get(
                 accumulatedFitnessList.indexOf(
                     accumulatedFitnessList
                     .stream()
@@ -63,9 +63,9 @@ public class SelectionRanking implements Selection {
                 )
             );
 
-			selectedChromosomes.add(selectedChromosome);
-		}
-		
-		return selectedChromosomes;
+            selectedChromosomes.add(selectedChromosome);
+        }
+
+        return selectedChromosomes;
     }    
 }

@@ -245,7 +245,7 @@ public class ParseConfig
                 break;
                 
             case "ranking":
-                selection = new SelectionRanking(take, value);
+                selection = new SelectionRanking(take);
                 break;
                 
             case "roulette":
