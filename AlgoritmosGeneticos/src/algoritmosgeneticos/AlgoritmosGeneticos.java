@@ -30,6 +30,9 @@ public class AlgoritmosGeneticos {
         Boolean once = true; // Should it run one pass, or should it allow configuration changes.
 
         do {
+            
+            List<Double> fitnessHistory = new ArrayList<>();
+            
             try {
                 pc.loadConfig("config/config.properties"); // reload configuration
             } catch(Exception e){}
@@ -70,9 +73,11 @@ public class AlgoritmosGeneticos {
                     chromosomes = aux;
                 } else {
                     chromosomes = reemplazar.apply(mutation.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
-                    System.out.println(findBestSelection.apply(chromosomes));
+                    fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());
                 }
             }
+            
+            Plotter.plot(fitnessHistory, "Generations", "Best fitness chromosome", "Fitness through generations");
             
             // This is done to allow changing the config file without reloading all the data.
             if (once) return;

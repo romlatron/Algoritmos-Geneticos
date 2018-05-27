@@ -32,8 +32,9 @@ public class FileReader {
             Scanner sc = new Scanner(file).useLocale(Locale.US);
             sc.nextLine();
             long count = 0;
+            int maxCount = 500; // TODO: Change to set max reading items
 
-            while(sc.hasNextInt()){
+            while(count < maxCount && sc.hasNextInt()){
                 System.out.println(filename + (++count));
                 switch(itemType){
                 case "BOOTS":
