@@ -77,8 +77,7 @@ public class ParseConfig
     private List<Item> weapon;
     private List<Item> helmet;
     
-    private ParseConfig(String fileName) throws IOException
-    {
+    public void loadConfig(String fileName) throws IOException {
         //Read configuration from configuration file (config.properties)
         Properties prop = new Properties();
         
@@ -134,6 +133,11 @@ public class ParseConfig
         stopCondition = prop.getProperty("stopCondition.type");
         stopConditionValue = Integer.valueOf(prop.getProperty("stopCondition.value"));
         scOptimumLevel = Double.valueOf(prop.getProperty("stopCondition.optimum.level"));
+    }
+    
+    private ParseConfig(String fileName) throws IOException
+    {
+        loadConfig(fileName);
         
         //Read items from item files (*.tsv)
         FileReader fileReader = new FileReader();
