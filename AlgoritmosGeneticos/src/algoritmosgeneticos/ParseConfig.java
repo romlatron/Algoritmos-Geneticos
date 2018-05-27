@@ -147,7 +147,7 @@ public class ParseConfig
     public static ParseConfig getInstance(String fileName) throws IOException
     {
         if (pc == null)
-            return new ParseConfig(fileName);
+            return pc = new ParseConfig(fileName);
         
         return pc;
     }

@@ -31,9 +31,10 @@ public class FileReader {
         try {
             Scanner sc = new Scanner(file).useLocale(Locale.US);
             sc.nextLine();
+            long count = 0;
 
             while(sc.hasNextInt()){
-                System.out.println("READING");
+                System.out.println(filename + (++count));
                 switch(itemType){
                 case "BOOTS":
                     items.add(new Boot(sc.nextInt(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),sc.nextDouble()));

@@ -63,12 +63,9 @@ public class AlgoritmosGeneticos {
                 chromosomes = aux;
             } else {
                 chromosomes = reemplazar.apply(mutation.apply(recombinar.apply(seleccionar.apply(chromosomes))), chromosomes);
-                System.out.println(findBestSelection.apply(chromosomes).get(0).getFitness());
+                System.out.println(findBestSelection.apply(chromosomes));
             }
-            
         }
-        System.out.println(findBestSelection.apply(chromosomes));
-
     }
     
     // TODO: Add Generational gap
