@@ -44,16 +44,15 @@ public class AlgoritmosGeneticos {
             Crossover crossover = pc.selectCrossover();
             Mutation mutation = pc.selectMutation();
             StopCondition stopCondition = pc.selectStopCondition();
-
-            Selection select = new SelectionMixed(new SelectionBoltzmann(400), new SelectionElite(), 0.8, 10); // N is the total number of chromosomes. gap is a parameter between 0 and 1.
-            Replacement replace = new ReplaceKMutated(select); // 10 is param, 0 is not important since it gets overwritten in replacement.
-
+            Selection select = pc.selectSelection();
+            Replacement replace = pc.selectReplacement();
+            
             Selection findBestSelection = new SelectionElite(1);
 
             //System.out.println(findBestSelection.apply(chromosomes));
 
             // Iterate to stop condition
-            while (!stopCondition.stop(chromosomes)) {
+            /*while (!stopCondition.stop(chromosomes)) {
 
                 // If the replacement strategy is mutate all, do some extra logic
                 if (replace instanceof ReplaceAllMutated) {
@@ -73,8 +72,19 @@ public class AlgoritmosGeneticos {
                     chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), chromosomes);
                     fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());
                 }
+            }*/
+            
+            while (!stopCondition.stop(chromosomes))
+            {
+                if (replace instanceof ReplaceAllMutated) 
+                    chromosomes = replace.apply(mutation.apply(crossover.apply(chromosomes)), chromosomes);
+                else
+                    chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), chromosomes);
+                
+                fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());    
             }
             
+            System.out.println(findBestSelection.apply(chromosomes).get(0));
             Plotter.plot(fitnessHistory, "Generations", "Best fitness chromosome", "Fitness through generations");
             
             // This is done to allow changing the config file without reloading all the data.
