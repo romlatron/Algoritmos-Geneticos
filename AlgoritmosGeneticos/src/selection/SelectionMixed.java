@@ -24,6 +24,12 @@ public class SelectionMixed implements Selection {
         this.methodB = methodB;
         this.probability = probability;
         this.take = take;
+        
+        // Define the amount of chromosomes each method should take
+        int takeA = (int) (probability * this.take);
+        int takeB = this.take - (int) (probability * this.take);
+        methodA.setTake(takeA);
+        methodB.setTake(takeB);
     }
 
     @Override
@@ -38,12 +44,6 @@ public class SelectionMixed implements Selection {
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
         // TODO: Check this method. Is it OK? Specially the remove elements part (Should I do that?).
         List<Chromosome> selected = new ArrayList<>();
-
-        // Define the amount of chromosomes each method should take
-        int takeA = (int) (probability * this.take);
-        int takeB = this.take - (int) (probability * this.take);
-        methodA.setTake(takeA);
-        methodB.setTake(takeB);
         
         // Select chromosomes through method A
         selected.addAll(methodA.apply(chromosomes));

@@ -19,6 +19,8 @@ public class SelectionRanking implements Selection {
     private int take;
     private double fitnessAcc = 0;
 
+    public SelectionRanking() {}
+
     public SelectionRanking (int take) {
         this.take = take;
     }

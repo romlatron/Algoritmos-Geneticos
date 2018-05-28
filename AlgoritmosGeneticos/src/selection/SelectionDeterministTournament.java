@@ -19,6 +19,10 @@ public class SelectionDeterministTournament implements Selection {
     private int take;
     private int round; // Parametrizable, 2 or 3
 
+    public SelectionDeterministTournament(int round) {
+        this.round = round;
+    }
+    
     public SelectionDeterministTournament (int take, int round) {
         this.take = take;
         this.round = round;

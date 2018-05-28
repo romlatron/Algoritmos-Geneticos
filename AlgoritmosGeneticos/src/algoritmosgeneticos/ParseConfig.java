@@ -231,37 +231,37 @@ public class ParseConfig
         return mutation;
     }
     
-    private Selection selectSelection(String type, int take, int value)
+    private Selection selectSelection(String type, int value)
     {
         Selection selection = null;
         switch(type.toLowerCase())
         {
             case "boltzmann":
-                selection = new SelectionBoltzmann(take, value);
+                selection = new SelectionBoltzmann(value);
                 break;
                 
             case "determinist":
-                selection = new SelectionDeterministTournament(take, value);
+                selection = new SelectionDeterministTournament(value);
                 break;
                 
             case "elite":
-                selection = new SelectionElite(take);
+                selection = new SelectionElite();
                 break;
                 
             case "probabilistic":
-                selection = new SelectionProbabilisticTournament(take);
+                selection = new SelectionProbabilisticTournament();
                 break;
                 
             case "ranking":
-                selection = new SelectionRanking(take);
+                selection = new SelectionRanking();
                 break;
                 
             case "roulette":
-                selection = new SelectionRoulette(take);
+                selection = new SelectionRoulette();
                 break;
                 
             case "universal":
-                selection = new SelectionUniversal(take);
+                selection = new SelectionUniversal();
                 break;
                 
             default :
@@ -269,10 +269,19 @@ public class ParseConfig
         }
         return selection;
     }
+    
+    private Selection selectSelection(String type, int take, int value)
+    {
+        Selection s = selectSelection(type, value);
+        s.setTake(take);
+        
+        return s;
+    }
+    
     private SelectionMixed createSelectionMixed(String selectionA, int value2A, String selectionB, int value2B, int take, double proba)
     {
-        Selection methodA = selectSelection(selectionA, take, value2A);
-        Selection methodB = selectSelection(selectionB, take, value2B);
+        Selection methodA = selectSelection(selectionA, value2A);
+        Selection methodB = selectSelection(selectionB, value2B);
         
         return new SelectionMixed(methodA, methodB, proba, take);
     }
@@ -328,6 +337,7 @@ public class ParseConfig
             rSelection = createSelectionMixed(replacementSelectionMethodA, replacementSelectionValue2A, replacementSelectionMethodB, replacementSelectionValue2B, replacementSelectionTake, replacementSelectionMixedProba);
         else
             rSelection = selectSelection(replacementSelection, replacementSelectionTake, replacementSelectionValue2A);
+        
         
         switch(replacementType)
         {

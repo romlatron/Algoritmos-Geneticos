@@ -21,7 +21,6 @@ public class SelectionBoltzmann implements Selection {
     private double fitnessAcc = 0;
 
     public SelectionBoltzmann (int temperature) {
-        this.take = take;
         this.temperature = temperature;
     }
     

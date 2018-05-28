@@ -17,6 +17,8 @@ import java.util.List;
 public class SelectionProbabilisticTournament implements Selection {
     private int take;
 
+    public SelectionProbabilisticTournament() {}
+    
     public SelectionProbabilisticTournament (int take) {
         this.take = take;
     }
