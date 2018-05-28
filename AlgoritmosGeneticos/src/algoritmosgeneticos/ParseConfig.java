@@ -68,6 +68,7 @@ public class ParseConfig
     //Stop condition
     private String stopCondition;
     private int stopConditionValue;
+    private int structureConditionValue;
     private double scOptimumLevel;
     
     //Item files attributes
@@ -133,6 +134,7 @@ public class ParseConfig
         stopCondition = prop.getProperty("stopCondition.type");
         stopConditionValue = Integer.valueOf(prop.getProperty("stopCondition.value"));
         scOptimumLevel = Double.valueOf(prop.getProperty("stopCondition.optimum.level"));
+        structureConditionValue = Integer.valueOf(prop.getProperty("stopCondition.structure.changement"));
         
         is.close();
     }
@@ -365,6 +367,7 @@ public class ParseConfig
                 break;
                 
             case "structure" :
+                sc = new StructureCondition(structureConditionValue, stopConditionValue);
                 break;
                 
             default :
