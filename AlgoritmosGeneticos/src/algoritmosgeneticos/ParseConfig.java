@@ -133,6 +133,8 @@ public class ParseConfig
         stopCondition = prop.getProperty("stopCondition.type");
         stopConditionValue = Integer.valueOf(prop.getProperty("stopCondition.value"));
         scOptimumLevel = Double.valueOf(prop.getProperty("stopCondition.optimum.level"));
+        
+        is.close();
     }
     
     private ParseConfig(String fileName) throws IOException
