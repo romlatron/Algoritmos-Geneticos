@@ -1,13 +1,13 @@
 # Algoritmos Géneticos
 
-Se incluye en el repositorio el `informe.pdf`, la `presentacion.pdf`, el código fuente del proyecto y el compilado `project.jar`.
+Se incluye en el repositorio el `informe.pdf`, la `presentacion.pdf`, el código fuente del proyecto y el compilado `AlgoritmosGeneticos.jar`.
 
 ## Run
 
 Para ejecutar el proyecto clone el repositorio y ejecute las siguientes lineas.
 
 ```sh
-java project.jar
+java -jar "./AlgoritmosGeneticos/dist/AlgoritmosGeneticos.jar"
 ```
 
 ## Configuration
