@@ -56,9 +56,7 @@ public class ParseConfig
     
     //Replacement
     private String replacementType;
-    private int replacementValue;
     private String replacementSelection;
-    private int replacementSelectionTake;
     private String replacementSelectionMethodA;
     private int replacementSelectionValue2A;
     private String replacementSelectionMethodB;
@@ -117,10 +115,8 @@ public class ParseConfig
         
         //Replacement
         replacementType = prop.getProperty("replacement.type");
-        replacementValue = Integer.valueOf(prop.getProperty("replacement.value"));
         //Replacement selection
         replacementSelection = prop.getProperty("replacement.selection.type");
-        replacementSelectionTake = Integer.valueOf(prop.getProperty("replacement.selection.take"));
         //Method A in case of mixed selection
         replacementSelectionMethodA = prop.getProperty("replacement.selection.methodA");
         replacementSelectionValue2A = Integer.valueOf(prop.getProperty("replacement.selection.value2A"));
@@ -278,6 +274,14 @@ public class ParseConfig
         return s;
     }
     
+    private SelectionMixed createSelectionMixed(String selectionA, int value2A, String selectionB, int value2B, double proba)
+    {
+        Selection methodA = selectSelection(selectionA, value2A);
+        Selection methodB = selectSelection(selectionB, value2B);
+        
+        return new SelectionMixed(methodA, methodB, proba);
+    }
+    
     private SelectionMixed createSelectionMixed(String selectionA, int value2A, String selectionB, int value2B, int take, double proba)
     {
         Selection methodA = selectSelection(selectionA, value2A);
@@ -334,10 +338,9 @@ public class ParseConfig
         Replacement replacement = null;
         Selection rSelection = null;
         if (replacementSelection.equals("mixed"))
-            rSelection = createSelectionMixed(replacementSelectionMethodA, replacementSelectionValue2A, replacementSelectionMethodB, replacementSelectionValue2B, replacementSelectionTake, replacementSelectionMixedProba);
+            rSelection = createSelectionMixed(replacementSelectionMethodA, replacementSelectionValue2A, replacementSelectionMethodB, replacementSelectionValue2B, replacementSelectionMixedProba);
         else
-            rSelection = selectSelection(replacementSelection, replacementSelectionTake, replacementSelectionValue2A);
-        
+            rSelection = selectSelection(replacementSelection, replacementSelectionValue2A);
         
         switch(replacementType)
         {

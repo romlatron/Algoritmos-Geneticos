@@ -19,6 +19,12 @@ public class SelectionMixed implements Selection {
     private Selection methodB;
     private double probability;
 
+    public SelectionMixed(Selection methodA, Selection methodB, double probability) {
+        this.methodA = methodA;
+        this.methodB = methodB;
+        this.probability = probability;
+    }
+
     public SelectionMixed (Selection methodA, Selection methodB, double probability, int take) {
         this.methodA = methodA;
         this.methodB = methodB;
@@ -38,6 +44,12 @@ public class SelectionMixed implements Selection {
     @Override
     public void setTake (int take) {
         this.take = take;
+        
+        // Define the amount of chromosomes each method should take
+        int takeA = (int) (this.probability * this.take);
+        int takeB = this.take - (int) (this.probability * this.take);
+        methodA.setTake(takeA);
+        methodB.setTake(takeB);
     }
 
     @Override
