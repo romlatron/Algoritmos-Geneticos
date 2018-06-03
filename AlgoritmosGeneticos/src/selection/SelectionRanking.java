@@ -30,9 +30,7 @@ public class SelectionRanking implements Selection {
 
     public void setTake (int take) {
         this.take = take;
-    }
-
-    // TODO: Change it
+    }   
 
     @Override
     public List<Chromosome> apply (List<Chromosome> chromosomes) {
@@ -40,15 +38,16 @@ public class SelectionRanking implements Selection {
         List<Chromosome> orderedChromosomes = new ArrayList<>(chromosomes);
         Collections.sort(orderedChromosomes);
         List<Chromosome> selectedChromosomes = new ArrayList<>();
+        List<Double> accumulatedFitnessList = new ArrayList<>();
 
         // TODO: Check this algorithm is OK.
 
         // Generate the accumulated fitness list
         // In this case, the fitness is given only by its position (It's ranking)
-        List<Double> accumulatedFitnessList = orderedChromosomes
-        .stream()
-        .map(chromosome -> this.fitnessAcc += 1)
-        .collect(Collectors.toList());
+        for(int i = 0; i < orderedChromosomes.size(); i++) {
+            this.fitnessAcc += orderedChromosomes.size() - i + 1;
+            accumulatedFitnessList.add(new Double(this.fitnessAcc));
+        }
 
         // Get `this.take` elements from the chromosome list
         for (int i = 0; i < this.take; i++) {
