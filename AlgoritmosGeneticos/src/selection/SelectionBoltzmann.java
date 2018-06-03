@@ -16,17 +16,18 @@ import java.util.stream.Collectors;
  * @author Acer
  */
 public class SelectionBoltzmann implements Selection {
-    private int temperature;
+    private int maxSteps;
+    private int stepNum = 0;
     private int take;
     private double fitnessAcc = 0;
 
-    public SelectionBoltzmann (int temperature) {
-        this.temperature = temperature;
+    public SelectionBoltzmann (int maxSteps) {
+        this.maxSteps = maxSteps;
     }
     
-    public SelectionBoltzmann (int take, int temperature) {
+    public SelectionBoltzmann (int take, int maxSteps) {
         this.take = take;
-        this.temperature = temperature;
+        this.maxSteps = maxSteps;
     }
 
     @Override
@@ -36,6 +37,10 @@ public class SelectionBoltzmann implements Selection {
     @Override
     public void setTake (int take) {
         this.take = take;
+    }
+    
+    private double temperature() {
+        return Math.max(Math.exp(-this.stepNum/5.0) * 20, 1);
     }
     
     @Override
@@ -48,7 +53,7 @@ public class SelectionBoltzmann implements Selection {
         // Generate the accumulated fitness list
         List<Double> accumulatedFitnessList = chromosomes
         .stream()
-        .map(chromosome -> this.fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature))
+        .map(chromosome -> this.fitnessAcc += Math.exp(chromosome.getFitness() / this.temperature()))
         .collect(Collectors.toList());
         
         // Get `this.take` elements from the chromosome list
@@ -68,7 +73,7 @@ public class SelectionBoltzmann implements Selection {
             selectedChromosomes.add(selectedChromosome);
         }
         
-        this.temperature = Math.max(this.temperature - 1, 1);
+        this.stepNum = this.stepNum == this.maxSteps ? this.maxSteps : this.stepNum + 1;
         
         return selectedChromosomes;
     }    
