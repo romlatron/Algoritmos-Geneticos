@@ -32,9 +32,10 @@ public abstract class CrossoverAbstract implements Crossover {
             if (Math.random() < prob)
                 newSons.addAll(apply(chromosomes.get(i), chromosomes.get(i+1)));
             else {
-                newSons.add(chromosomes.get(i));
-                newSons.add(chromosomes.get(i+1));
+                newSons.add(new Chromosome(chromosomes.get(i)));
+                newSons.add(new Chromosome(chromosomes.get(i+1)));
             }
+            
         }
         return newSons;
     }

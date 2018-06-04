@@ -7,6 +7,7 @@ package algoritmosgeneticos;
 
 import algoritmosgeneticos.character.Character;
 import algoritmosgeneticos.item.Item;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +47,15 @@ public class Chromosome implements Comparable<Chromosome> {
         return true;
     }
     
+    public Chromosome(Chromosome c) {
+        this.height = c.height;
+        this.items = new ArrayList<>();
+        this.character = c.character;
+        for (Item i: c.items) {
+            this.items.add(i);
+        }
+    }
+        
     public String toString() {
         String ret = "";
         
