@@ -58,21 +58,12 @@ public class SelectionMixed implements Selection {
         // TODO: Check this method. Is it OK? Specially the remove elements part (Should I do that?).
         List<Chromosome> selected = new ArrayList<>();
         
-        System.out.println("SELECTION MIXED");
-
         // Select chromosomes through method A
         selected.addAll(methodA.apply(chromosomes));
-        
-        Collections.sort(selected);
-        System.out.println("best selected: " + selected.get(0).getFitness());
         
         // Select chromosomes through method B
         selected.addAll(methodB.apply(chromosomes));
         
-        Collections.sort(selected);
-        System.out.println("best selected later: " + selected.get(0).getFitness());
-
-
         return selected;
     }    
 }

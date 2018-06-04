@@ -13,7 +13,9 @@ import stop_condition.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -24,6 +26,7 @@ public class AlgoritmosGeneticos {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args) throws IOException
     {
         ParseConfig pc = ParseConfig.getInstance("config/config.properties");
@@ -32,6 +35,9 @@ public class AlgoritmosGeneticos {
         do {
             
             List<Double> fitnessHistory = new ArrayList<>();
+            List<Double> fitnessMin = new ArrayList<>();
+            List<Double> fitnessAvg = new ArrayList<>();
+
             
             try {
                 pc.loadConfig("config/config.properties"); // reload configuration
@@ -81,11 +87,19 @@ public class AlgoritmosGeneticos {
                 else
                     chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), chromosomes);
                 
-                fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());    
+                fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());
+                double fitnessSum = 0;
+                double minFitness = Integer.MAX_VALUE;
+                for (Chromosome c: chromosomes) {
+                    fitnessSum += c.getFitness();
+                    minFitness = minFitness < c.getFitness() ? minFitness : c.getFitness();
+                }
+                fitnessMin.add(minFitness); // red
+                fitnessAvg.add(fitnessSum / chromosomes.size()); // green
             }
             
             System.out.println(findBestSelection.apply(chromosomes).get(0));
-            Plotter.plot(fitnessHistory, "Generations", "Best fitness chromosome", "Fitness through generations");
+            Plotter.plot(fitnessHistory, fitnessMin, fitnessAvg);
             
             // This is done to allow changing the config file without reloading all the data.
             if (once) return;

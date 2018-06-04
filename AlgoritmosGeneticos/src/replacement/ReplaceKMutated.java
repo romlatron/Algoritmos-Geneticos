@@ -27,15 +27,9 @@ public class ReplaceKMutated implements Replacement {
         List<Chromosome> replaced = new ArrayList<>();
         replaced.addAll(mutated);
         
-        System.out.println("START K MUTATED");
-        Collections.sort(mutated);
-        System.out.println("best mutated: " + mutated.get(0).getFitness());
-        
         selection.setTake(oldGeneration.size() - mutated.size());
         
         replaced.addAll(selection.apply(oldGeneration));
-        Collections.sort(replaced);
-        System.out.println("best replaced: " + mutated.get(0).getFitness());
         return replaced;
     }    
 }

@@ -22,38 +22,82 @@ import org.math.plot.plotObjects.BaseLabel;
  * @author rama
  */
 public class Plotter {
-    public static void plot(List<Double> ys, String titleX, String titleY, String title) {
+    private JFrame frame;
+    Plot2DPanel plot;
+    Boolean firstPass = true;
+    
+    public void plotRealTime(List<Double> ys, List<Double> minYs, List<Double> avgYs) {
         double[] x = new double[ys.size()];
         double[] y = new double[ys.size()];
+        double[] minY = new double[ys.size()];
+        double[] avgY = new double[ys.size()];
+        
+        Plot2DPanel plot = new Plot2DPanel();
+        
+        for(int i = 0 ; i < ys.size() ; i++ ) {
+            x[i] = i+1;
+            y[i] = ys.get(i);
+            minY[i] = minYs.get(i);
+            avgY[i] = avgYs.get(i);
+        }
+        
+        plot.addLinePlot("Fitness through generations", x, y);
+        plot.addLinePlot("test", x, minY);
+        plot.addLinePlot("test", x, avgY);
 
+//        BaseLabel labelTitle = new BaseLabel("Fitness through generations", Color.BLACK, 0.5, 1.1);
+//        labelTitle.setFont(new Font("Courier", Font.BOLD, 20));
+//        plot.addPlotable(labelTitle);
+        
+        // put the PlotPanel in a JFrame, as a JPanel
+        this.frame = this.frame == null ? new JFrame("Plot") : this.frame;
+        if (firstPass) {
+            frame.setSize(1200, 600);
+            frame.setVisible(true); 
+            firstPass = false;
+        }
+        frame.setContentPane(plot);
+
+    }
+    
+    public static void plot(List<Double> ys, List<Double> minYs, List<Double> avgYs) {
+        double[] x = new double[ys.size()];
+        double[] y = new double[ys.size()];
+        double[] minY = new double[ys.size()];
+        double[] avgY = new double[ys.size()];
+        
         Plot2DPanel plot = new Plot2DPanel();
 
         for(int i = 0 ; i < ys.size() ; i++ ) {
             x[i] = i+1;
             y[i] = ys.get(i);
+            minY[i] = minYs.get(i);
+            avgY[i] = avgYs.get(i);
         }
 
-        plot.addLinePlot(title, x, y);
+        plot.addLinePlot("Fitness through generations", x, y);
+        plot.addLinePlot("test", x, minY);
+        plot.addLinePlot("test", x, avgY);
 
-        BaseLabel labelTitle = new BaseLabel(title, Color.BLACK, 0.5, 1.1);
+        BaseLabel labelTitle = new BaseLabel("Fitness through generations", Color.BLACK, 0.5, 1.1);
         labelTitle.setFont(new Font("Courier", Font.BOLD, 20));
         plot.addPlotable(labelTitle);
         
         // put the PlotPanel in a JFrame, as a JPanel
-//        JFrame frame = new JFrame(title + " plot");
-//        frame.setSize(600, 600);
-//        frame.setContentPane(plot);
-//        frame.setVisible(true);
-//        
-        plot.plotCanvas.setSize(600, 600);
+        JFrame frame = new JFrame("Plot");
+        frame.setSize(1200, 600);
+        frame.setContentPane(plot);
+        frame.setVisible(true);
+        
+        plot.plotCanvas.setSize(1200, 600);
         
         BufferedImage bufferedImage = new BufferedImage(plot.plotCanvas.getWidth(), plot.plotCanvas.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics2D g = bufferedImage.createGraphics();
         plot.plotCanvas.paint(g);
         g.dispose();
         try {
-            ImageIO.write((RenderedImage) bufferedImage, "PNG", new File("plots/"+ title + ".png"));
-            System.out.println("Save plot " + title);
+            ImageIO.write((RenderedImage) bufferedImage, "PNG", new File("plots/"+ "Fitness through generations" + ".png"));
+            System.out.println("Save plot Fitness through generations");
         } catch (Exception e) {}
     }
 }
