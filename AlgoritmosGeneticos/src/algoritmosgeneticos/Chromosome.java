@@ -27,6 +27,7 @@ public class Chromosome implements Comparable<Chromosome> {
     @Override
     public int compareTo(Chromosome c) {
         // Greater comes first
+        
         double diff = this.getFitness() - c.getFitness();
 
         if (diff == 0) return 0;

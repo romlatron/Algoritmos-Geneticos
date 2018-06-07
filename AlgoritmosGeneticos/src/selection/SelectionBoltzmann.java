@@ -40,7 +40,7 @@ public class SelectionBoltzmann implements Selection {
     }
     
     private double temperature() {
-        return Math.max(Math.exp(-this.stepNum/5.0) * 20, 1);
+        return Math.max(-this.stepNum + this.maxSteps, 0.1);
     }
     
     @Override
@@ -74,7 +74,7 @@ public class SelectionBoltzmann implements Selection {
         }
         
         this.stepNum = this.stepNum == this.maxSteps ? this.maxSteps : this.stepNum + 1;
-        
+        this.fitnessAcc = 0;
         return selectedChromosomes;
     }    
 }

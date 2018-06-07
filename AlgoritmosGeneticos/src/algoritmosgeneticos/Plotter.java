@@ -25,8 +25,13 @@ public class Plotter {
     private JFrame frame;
     Plot2DPanel plot;
     Boolean firstPass = true;
-    
+    public static int step = 0;
+            
     public void plotRealTime(List<Double> ys, List<Double> minYs, List<Double> avgYs) {
+        step++;
+        if (!(step % 10 == 0)) return;
+        step = 0;
+        
         double[] x = new double[ys.size()];
         double[] y = new double[ys.size()];
         double[] minY = new double[ys.size()];
@@ -84,10 +89,10 @@ public class Plotter {
         plot.addPlotable(labelTitle);
         
         // put the PlotPanel in a JFrame, as a JPanel
-        JFrame frame = new JFrame("Plot");
-        frame.setSize(1200, 600);
-        frame.setContentPane(plot);
-        frame.setVisible(true);
+//        JFrame frame = new JFrame("Plot");
+//        frame.setSize(1200, 600);
+//        frame.setContentPane(plot);
+//        frame.setVisible(true);
         
         plot.plotCanvas.setSize(1200, 600);
         
