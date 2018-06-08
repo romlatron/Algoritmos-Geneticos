@@ -233,30 +233,37 @@ public class ParseConfig
         switch(type.toLowerCase())
         {
             case "boltzmann":
+                System.out.println("Replacement Boltzmann");
                 selection = new SelectionBoltzmann(value);
                 break;
                 
             case "determinist":
+                System.out.println("Replacement Determinist");
                 selection = new SelectionDeterministTournament(value);
                 break;
                 
             case "elite":
+                System.out.println("Replacement Elite");
                 selection = new SelectionElite();
                 break;
                 
             case "probabilistic":
+                System.out.println("Replacement Proba");
                 selection = new SelectionProbabilisticTournament();
                 break;
                 
             case "ranking":
+                System.out.println("Replacement Ranking");
                 selection = new SelectionRanking();
                 break;
                 
             case "roulette":
+                System.out.println("Replacement Roulette");
                 selection = new SelectionRoulette();
                 break;
                 
             case "universal":
+                System.out.println("Replacement Universal");
                 selection = new SelectionUniversal();
                 break;
                 
@@ -296,34 +303,42 @@ public class ParseConfig
         switch(selectionType.toLowerCase())
         {
             case "boltzmann":
+                System.out.println("Selection Boltzmann");
                 selection = new SelectionBoltzmann(selectionTake, selectionValue2A);
                 break;
                 
             case "determinist":
+                System.out.println("Selection Determinist");
                 selection = new SelectionDeterministTournament(selectionTake, selectionValue2A);
                 break;
                 
             case "elite":
+                System.out.println("Selection Elite");
                 selection = new SelectionElite(selectionTake);
                 break;
                 
             case "mixed":
+                System.out.println("Selection Mixed");
                 selection = createSelectionMixed(selectionMethodA, selectionValue2A, selectionMethodB, selectionValue2B, selectionTake, selectionMixedProba);
                 break;
                 
             case "probabilistic":
+                System.out.println("Selection Proba");
                 selection = new SelectionProbabilisticTournament(selectionTake);
                 break;
                 
             case "ranking":
+                System.out.println("Selection Ranking");
                 selection = new SelectionRanking(selectionTake);
                 break;
                 
             case "roulette":
+                System.out.println("Selection Roulette");
                 selection = new SelectionRoulette(selectionTake);
                 break;
                 
             case "universal":
+                System.out.println("Selection Universal");
                 selection = new SelectionUniversal(selectionTake);
                 break;
                 
