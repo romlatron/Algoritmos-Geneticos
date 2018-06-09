@@ -57,9 +57,11 @@ public class SelectionRoulette implements Selection {
                     .findFirst().get()
                 )
             );
-            
+                     
             selectedChromosomes.add(selectedChromosome);
         }
+        
+        this.fitnessAcc = 0;
         
         return selectedChromosomes;
     }    

@@ -67,6 +67,7 @@ public class SelectionUniversal implements Selection {
             selectedChromosomes.add(selectedChromosome);
         }
 
+        this.fitnessAcc = 0;
         return selectedChromosomes;
     }    
 }
