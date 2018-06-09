@@ -9,6 +9,7 @@ import selection.*;
 import replacement.*;
 import mutation.*;
 import crossover.*;
+import java.io.File;
 import stop_condition.*;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -29,7 +32,16 @@ public class AlgoritmosGeneticos {
     
     public static void main(String[] args) throws IOException
     {
-        ParseConfig pc = ParseConfig.getInstance("config/config.properties");
+        JFileChooser configFileChooser = new JFileChooser(new File(".."));
+        configFileChooser.setFileFilter(new FileNameExtensionFilter("Config files", "properties"));
+        File configFile = null;
+        
+        if (configFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            configFile = configFileChooser.getSelectedFile();
+        else 
+            return;
+        
+        ParseConfig pc = ParseConfig.getInstance(configFile.getAbsolutePath());
         Boolean once = true; // Should it run one pass, or should it allow configuration changes.
 
         do {

@@ -9,6 +9,7 @@ import Files.FileReader;
 import algoritmosgeneticos.character.*;
 import algoritmosgeneticos.item.*;
 import crossover.*;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -80,9 +81,9 @@ public class ParseConfig
         //Read configuration from configuration file (config.properties)
         Properties prop = new Properties();
         
-        InputStream is = getClass().getClassLoader().getResourceAsStream(fileName);
-        if (is != null)
-            prop.load(is);
+        FileInputStream fis = new FileInputStream(fileName);
+        if (fis != null)
+            prop.load(fis);
         else
             throw new FileNotFoundException("config file '" + fileName + "'not found");
         
@@ -132,7 +133,7 @@ public class ParseConfig
         scOptimumLevel = Double.valueOf(prop.getProperty("stopCondition.optimum.level"));
         structureConditionValue = Integer.valueOf(prop.getProperty("stopCondition.structure.changement"));
         
-        is.close();
+        fis.close();
     }
     
     private ParseConfig(String fileName) throws IOException
