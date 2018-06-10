@@ -87,23 +87,16 @@ public class AlgoritmosGeneticos {
         while (!stopCondition.stop(chromosomes))
         {
             List<Chromosome> oldGeneration = new ArrayList<>();
-            List <Chromosome> selected;
             for (Chromosome c: chromosomes) oldGeneration.add(new Chromosome(c));
             
             if (replace instanceof ReplaceAllMutated) {
                 select.setTake(2);
                 List<Chromosome> mutated = new ArrayList<>();
                 do {
-                   /* System.out.println(select.apply(chromosomes));
-                    System.out.println("-------------------");
-                    System.out.println(crossover.apply(select.apply(chromosomes)));
-                    System.out.println("*****************************");*/
-                    selected = select.apply(chromosomes);
-                    System.out.println(selected.get(0));
-                    chromosomes.remove(selected.get(0));                    
-                    chromosomes.remove(selected.get(1));
+                    List <Chromosome> selected = select.apply(oldGeneration);
                     mutated.addAll(mutation.apply(crossover.apply(selected)));
-                } while (mutated.size() < oldGeneration.size());
+                    oldGeneration.removeAll(selected);
+                } while (mutated.size() < chromosomes.size());
                 chromosomes = mutated;
             }
             else
