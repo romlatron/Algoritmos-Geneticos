@@ -93,7 +93,8 @@ public class AlgoritmosGeneticos {
                 select.setTake(2);
                 List<Chromosome> mutated = new ArrayList<>();
                 do {
-                    mutated.addAll(mutation.apply(crossover.apply(select.apply(chromosomes))));
+                    mutated.addAll(mutation.apply(crossover.apply(select.apply(oldGeneration))));
+                    oldGeneration.removeAll(mutated);
                 } while (mutated.size() < chromosomes.size());
                 chromosomes = mutated;
             }
