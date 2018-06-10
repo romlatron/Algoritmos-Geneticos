@@ -24,10 +24,20 @@ public class ReplaceMixMutated implements Replacement {
     @Override
     public List<Chromosome> apply (List<Chromosome> mutated, List<Chromosome> oldGeneration) {
         List<Chromosome> replaced = new ArrayList<>();
-        replaced.addAll(mutated);
-        replaced.addAll(oldGeneration);
-
-        selection.setTake(oldGeneration.size());
-        return selection.apply(replaced);
+        List<Chromosome> chromosomePool = new ArrayList<>();
+        
+        // Mix old generation with mutated generation
+        chromosomePool.addAll(mutated);
+        chromosomePool.addAll(oldGeneration);
+        
+        // N-k from old generation is cloned without mutations
+        selection.setTake(oldGeneration.size() - mutated.size());
+        replaced.addAll(selection.apply(oldGeneration));
+        
+        // k from chromosome pool are selected into the new generation
+        selection.setTake(mutated.size());
+        replaced.addAll(selection.apply(chromosomePool));
+                
+        return replaced;
     }    
 }

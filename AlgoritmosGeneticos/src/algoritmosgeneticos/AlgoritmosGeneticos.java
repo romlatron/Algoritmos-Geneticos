@@ -86,10 +86,19 @@ public class AlgoritmosGeneticos {
 
         while (!stopCondition.stop(chromosomes))
         {
-            if (replace instanceof ReplaceAllMutated)
-                chromosomes = replace.apply(mutation.apply(crossover.apply(chromosomes)), chromosomes);
+            List<Chromosome> oldGeneration = new ArrayList<>();
+            for (Chromosome c: chromosomes) oldGeneration.add(new Chromosome(c));
+            
+            if (replace instanceof ReplaceAllMutated) {
+                select.setTake(2);
+                List<Chromosome> mutated = new ArrayList<>();
+                do {
+                    mutated.addAll(mutation.apply(crossover.apply(select.apply(chromosomes))));
+                } while (mutated.size() < chromosomes.size());
+                chromosomes = mutated;
+            }
             else
-                chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), chromosomes);
+                chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), oldGeneration);
 
             fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());
             double fitnessSum = 0;
