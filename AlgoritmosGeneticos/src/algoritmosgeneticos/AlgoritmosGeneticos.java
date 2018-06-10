@@ -9,11 +9,15 @@ import selection.*;
 import replacement.*;
 import mutation.*;
 import crossover.*;
+import java.io.File;
 import stop_condition.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -27,7 +31,16 @@ public class AlgoritmosGeneticos {
     
     public static void main(String[] args) throws IOException
     {
-        ParseConfig pc = ParseConfig.getInstance("config/config.properties");
+        JFileChooser configFileChooser = new JFileChooser(new File(".."));
+        configFileChooser.setFileFilter(new FileNameExtensionFilter("Config files", "properties"));
+        File configFile = null;
+        
+        if (configFileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            configFile = configFileChooser.getSelectedFile();
+        else 
+            return;
+        
+        ParseConfig pc = ParseConfig.getInstance(configFile.getAbsolutePath());
 
         List<Double> fitnessHistory = new ArrayList<>();
         List<Double> fitnessMin = new ArrayList<>();
@@ -73,10 +86,19 @@ public class AlgoritmosGeneticos {
 
         while (!stopCondition.stop(chromosomes))
         {
-            if (replace instanceof ReplaceAllMutated)
-                chromosomes = replace.apply(mutation.apply(crossover.apply(chromosomes)), chromosomes);
+            List<Chromosome> oldGeneration = new ArrayList<>();
+            for (Chromosome c: chromosomes) oldGeneration.add(new Chromosome(c));
+            
+            if (replace instanceof ReplaceAllMutated) {
+                select.setTake(2);
+                List<Chromosome> mutated = new ArrayList<>();
+                do {
+                    mutated.addAll(mutation.apply(crossover.apply(select.apply(chromosomes))));
+                } while (mutated.size() < chromosomes.size());
+                chromosomes = mutated;
+            }
             else
-                chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), chromosomes);
+                chromosomes = replace.apply(mutation.apply(crossover.apply(select.apply(chromosomes))), oldGeneration);
 
             fitnessHistory.add(findBestSelection.apply(chromosomes).get(0).getFitness());
             double fitnessSum = 0;

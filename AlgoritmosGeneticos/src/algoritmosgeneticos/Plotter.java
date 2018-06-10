@@ -62,6 +62,9 @@ public class Plotter {
             firstPass = false;
         }
         frame.setContentPane(plot);
+        frame.invalidate();
+        frame.validate();
+        frame.repaint();
 
     }
     
