@@ -21,6 +21,7 @@ Los archivos de los items deben incluirse en el directorio  `AlgoritmosGenetico
 
 * The parameter for the Determinist Tournament selection method should be around 2 and 3.
 * `k` should always be smaller than `n`
-* Boltzmann function is a linear function with negative slope.
+* Boltzmann function is a linear function with unitary negative slope with `b = to`.
+* The replacement methods `all`, `k`, and `mix` correspond to method 1, 2 and 3 respectively.
 
 
